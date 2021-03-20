@@ -29,6 +29,7 @@
     <link href="fontawesome-free-5.12.1-web/css/svg-with-js.min.css" rel="stylesheet" />
     <link href="fontawesome-free-5.12.1-web/css/v4-shims.css" rel="stylesheet" />
     <link href="fontawesome-free-5.12.1-web/css/v4-shims.min.css" rel="stylesheet" />
+
     <style type="text/css">
      #spinner {
 position: fixed;
@@ -53,6 +54,7 @@ background: url(images/spinner2.gif) 50% 50% no-repeat #ede9df;
   z-index: 10000;
 }
         </style>
+
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">

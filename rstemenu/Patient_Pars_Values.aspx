@@ -64,7 +64,7 @@
     </div>
     <div id="contentcontrol" runat="server" style="width: 100%; height: 600px; margin-top: 50px; padding: 4%;">
         <div class="col-md-2 col-sm-2 col-xm-2" runat="server" >
-            <svg width="70" height="350" viewBox="0 0 200 150">
+            <svg width="20%" height="350" viewBox="0 0 200 150">
                 <path d="m 100,0 0,150" />
                 <text x="100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100" y="50 80 110 140 170 200 230 260 290 320 350 380 410 440 470 500" color="blue"
                     style="font-size: 35px; text-anchor: middle; color: blue;">Post treatment</text>
