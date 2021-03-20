@@ -1,0 +1,90 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="sadmin.master.cs" Inherits="rstemenu.sadmin1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<title></title>
+<head><link href="Styles/SASite.css" rel="stylesheet" type="text/css" /></head>
+
+<asp:ContentPlaceHolder ID="HeadContent" runat="server">    
+
+
+
+
+
+
+    
+    </asp:ContentPlaceHolder>
+
+<body >
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    CARRY KARALO
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView> 
+            </div>
+            <div class="clear hideSkiplink">
+                
+
+                
+            </div>
+        </div>
+         <!--<div class="leftCol"> </div>-->
+        
+
+        <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal" Visible="true" >
+                    <Items>
+                        
+                        <asp:MenuItem NavigateUrl="Default.aspx" Text="Home"  ImageUrl="images/icons/homeico.png" />
+                        <asp:MenuItem NavigateUrl="#" Text="Manage Register Users" ImageUrl="images/icons/managecompanyico.png"   />
+                        <asp:MenuItem NavigateUrl="#" Text="Live Teasers"  ImageUrl="images/icons/managecompanyuserico.png"/>
+                        <asp:MenuItem NavigateUrl="#" Text="Manage Accounts"  ImageUrl="images/icons/managelanguagesico.png"/>
+                        <asp:MenuItem NavigateUrl="#" Text="Empty TAB"  ImageUrl="images/icons/managelanguagesico.png"/>
+                        <asp:MenuItem NavigateUrl="#" Text="Empty TAB"  ImageUrl="images/icons/managesalesico.png"/>
+                        
+                        <asp:MenuItem NavigateUrl="#" Text="Empty TAB"  ImageUrl="images/icons/vcustomersico.png"/>
+                       
+                        
+                        
+                    </Items>
+                </asp:Menu>
+
+
+                <!--
+                 <asp:MenuItem NavigateUrl="ManageAccounts.aspx" Text="Manage Accounts"  ImageUrl="images/icons/managecompanyuserico.png"/>
+                        <asp:MenuItem NavigateUrl="AllCompOrderStatus.aspx" Text="Rest. Order Status"  ImageUrl="images/icons/managelanguagesico.png"/>
+                        <asp:MenuItem NavigateUrl="AllCompSales.aspx" Text="Restaurant Sales"  ImageUrl="images/icons/managesalesico.png"/>
+                        <asp:MenuItem NavigateUrl="CustomersList.aspx" Text="Registered Customers List"  ImageUrl="images/icons/pcustomersico.png"/>
+                        <asp:MenuItem NavigateUrl="VisitedCustomers.aspx" Text="Visited Customers"  ImageUrl="images/icons/vcustomersico.png"/>
+                -->
+       <div>
+       <hr class="row" />
+       </div>
+        <div class="main">
+       
+
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

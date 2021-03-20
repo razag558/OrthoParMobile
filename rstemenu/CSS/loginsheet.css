@@ -1,0 +1,96 @@
+﻿/*html, body {
+	
+ background: url(../images/imagedarknoise.png) 0 0 fixed;
+ width:100%;
+	height:100%;	
+ 
+}*/
+html, body {
+	background:url(../images/bg-login.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin:0; padding:0;
+}
+.Logindiv_container{
+	width:1140px;
+	height:auto; 
+	margin:auto;
+	}
+.Logindiv{
+	/*width:487px;*/
+	width:433px;
+	background-color: rgba(0, 0, 0, 0.5) !important;
+    color: white;
+    font-size: 20pt;
+	float:right;
+	-webkit-box-shadow: 0px 0px 15px 0px rgba(255,255,255,1);
+	-moz-box-shadow: 0px 0px 15px 0px rgba(255,255,255,1);
+	box-shadow: 0px 0px 15px 0px rgba(255,255,255,1);
+	margin-top: 120px;padding-top: 18px;
+}
+.Logindiv label{
+	color:#fff !important; font-family:Arial, Helvetica, sans-serif !important; font-size: 15px !important;	
+	}
+
+.textEntry {
+    border: 0px solid;
+    float: right;
+    font-size: 20px;
+    margin: 2px;
+    padding: 11px;
+    width: 279px;
+}
+.passwordEntry {
+    border: 0px solid;
+    float: right;
+    font-size: 20px;
+    margin: 2px;
+    padding: 11px;
+    width: 279px;
+}
+#LoginUser_LoginButton{
+	background:url(../images/login_button.png) center center no-repeat; border: none; margin:10px auto; width: 370px; height: 80px; cursor: pointer;
+}
+#LoginUser_LoginButton2{
+	background:url(../images/ret_password_button.png) center center no-repeat; border: none; margin:10px auto; width: 370px; height: 80px; cursor: pointer;
+}
+
+#footer {
+	background:url(../images/footer_bg.png) repeat-x;
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+}
+.footer_left {
+    float: left;
+    font-family: arial;
+    font-size: 16px;
+    margin-top: 28px;
+    text-align: left;
+    width: 16%;
+}
+.footer_left a{ color: #fff; text-decoration: none;}
+.footer_left a:hover{ color: #fff; text-decoration: underline;}
+.footer_center {
+    float: left;
+    font-family: arial;
+    font-size: 16px;
+    margin-top: 28px;
+    text-align: center;
+    width: 67%;
+}
+.footer_center a{ color: #fff; text-decoration: none;}
+.footer_center a:hover{ color: #fff; text-decoration: underline;}
+.footer_right{
+    float: right;
+    font-family: arial;
+    font-size: 16px;
+    margin-top: 28px;
+    text-align: right;
+    width: 16%;
+}
+.footer_right a{ color: #fff; text-decoration: none;}
+.footer_right a:hover{ color: #fff; text-decoration: underline;}

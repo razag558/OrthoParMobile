@@ -1,0 +1,347 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="rstemenu.SiteMaster"  %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/dashboard.css" rel="stylesheet" type="text/css" />
+    
+  
+<script type="text/javascript" src="fancybox/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.1.js"></script>
+<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+    
+    
+  
+
+    <script type="text/javascript">
+
+       
+
+		$(document).ready(function() {
+			
+			$("#addcusion").fancybox({
+				'width'				: '70%',
+				'height'			: '90%',
+				'autoScale'			: false,
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none',
+				'type': 'iframe'
+			});
+
+$("#CusDetail").fancybox({
+    'width': '70%',
+    'height': '90%',
+    'autoScale': false,
+    'transitionIn': 'none',
+    'transitionOut': 'none',
+    'type': 'iframe'
+});
+
+            $("#addareas").fancybox({
+                'width': '70%',
+                'height': '90%',
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe'
+            });
+
+
+
+            $("#addareasr").fancybox({
+                'width': '70%',
+                'height': '90%',
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe'
+            });
+
+
+            $("#ManageCat").fancybox({
+                'width': '70%',
+                'height': '90%',
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe'
+            });
+
+            $("#ManageCat2").fancybox({
+                'width': '80%',
+                'height': '90%',
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe'
+            });
+
+            $("#CustCat").fancybox({
+                'width': '70%',
+                'height': '90%',
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe'
+            });
+
+            $("#BDays").fancybox({
+                'width': '70%',
+                'height': '90%',
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe'
+            });
+
+
+           
+       
+            $('.fancybox').fancybox({
+                'width': '40%',
+                'height': '90%',
+                'autoScale': false,
+               
+                openSpeed: 500,
+                closeEffect: 'elastic',
+                closeSpeed: 500,
+                nextEffect: 'elastic',
+                nextSpeed: 1200,
+                prevEffect: 'elastic',
+                prevSpeed: 1200,
+                 'type': 'iframe'
+            });
+
+             $("#AddNotification").fancybox({
+                 'width': '60%',
+                 'height': '50%',
+                 'autoScale': false,
+                 'transitionIn': 'none',
+                 'transitionOut': 'none',
+                 'type': 'iframe'
+             });
+
+
+            
+});
+	</script>
+
+
+</script>
+
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script  src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $("#txt_SearchSDate").datepicker();
+          $("#txt_SearchEDate").datepicker();
+          $("#MainContent_txt_OrderSDate").datepicker();
+          $("#MainContent_txt_OrderEDate").datepicker();
+
+      });
+  </script>
+
+   <script type="text/javascript">
+        $(document).ready(function () {
+            $("#slidingDiv").hide();
+            $(".show_hide").show();
+
+            $('.show_hide').click(function () {
+                $("#slidingDiv").slideToggle();
+                $(".slidingDivs").hide();
+            });
+
+            $(".slidingDivs").hide();
+            $(".show_hid").show();
+
+            $('.show_hid').click(function () {
+                $(".slidingDivs").slideToggle();
+                $("#slidingDiv").hide();
+            });
+
+        });
+</script>
+   
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="scroll/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="scroll/facescroll.js"></script>
+<script type="text/javascript">
+    jQuery(function () { // on page DOM load
+        $('#demo1').alternateScroll();
+        $('#demo2').alternateScroll();
+        $('#demo3').alternateScroll();
+        //$('#demo2').alternateScroll({ 'vertical-bar-class': 'styled-v-bar', 'hide-bars': false });	
+    })
+</script>
+ 
+
+
+
+
+
+  
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body onload="ExtendPanel()">
+    <form runat="server">
+     <div class="page">
+        <div class="header"  >
+            
+                <h1>
+                <div class="title">
+                <img src="images/site-logo.png"  width="80px" style="float:left;" />
+                   <asp:Label ID="lbl_Restaurantname" runat="server" Visible="false"></asp:Label>
+                    </div>
+                </h1>
+            
+             <div class="col-center" id="dvcenter" runat="server">
+      		<form action="" method="post">
+            <asp:DropDownList ID="ddl_branchlist" runat="server" AutoPostBack="true" 
+                DataTextField="CompName" DataValueField="CompID" 
+                onselectedindexchanged="ddl_branchlist_SelectedIndexChanged">
+            
+            	</asp:DropDownList>
+            </form>
+
+           
+
+            <div style="clear:both;"><br></div>
+            <asp:Button ID="btn_today" CssClass="myButton" runat="server"  Text="Today" onclick="btn_today_Click"  />
+             <asp:Button ID="btn_week" CssClass="myButton" runat="server"  
+        Text="This Week" onclick="btn_week_Click"/>
+              <asp:Button ID="btn_Month" CssClass="myButton" runat="server"  
+        Text="This Month" onclick="btn_Month_Click"/>
+            
+            <a href="javascript:;" class="show_hide myButton" runat="server" id="btn_custom">Custom</a><br /><br />
+            <style>
+			.toggle-customs input.cal{margin-right: 5px; padding:7px 5px 8px 22px; border: none; border-radius:5px; background-image: url(images/calendar.png);
+    background-repeat: no-repeat;text-indent: 20px;background-position: 5px 5px; /* position of the right icon */}
+			.toggle-customs input.nn{margin-right: 5px; padding:7px 5px 8px 10px; border: none; border-radius:5px; }
+			@media screen and (-webkit-min-device-pixel-ratio:0) { 
+/* Safari and Chrome */
+				.toggle-customs input.cal {
+				margin-right: 5px;
+				padding: 7px 5px 7px 2px;
+				border: none;
+				border-radius: 5px;
+				background-image: url(images/calendar.png);
+				background-repeat: no-repeat;
+				text-indent: 30px;
+				background-position: 5px 5px;
+			}
+
+/* Safari only override */
+::i-block-chrome,.toggle-customs input.cal {
+ margin-right: 5px;
+				padding: 7px 5px 7px 2px;
+				border: none;
+				border-radius: 5px;
+				background-image: url(images/calendar.png);
+				background-repeat: no-repeat;
+				text-indent: 30px;
+				background-position: 5px 5px;
+}}
+			/* chrome only css */
+			
+	
+	
+			</style>
+            <div id="slidingDiv" class="toggle-customs" style="color:#fff;">
+       <asp:TextBox ID="txt_SearchSDate" runat="server" Text="Start date" CssClass="cal" ></asp:TextBox>      
+                        <asp:TextBox ID="txt_SearchEDate" runat="server" Text="End date" CssClass="cal"></asp:TextBox>
+            <asp:Button ID="btn_Search" runat="server" Text="Search" CssClass="myButton" 
+                    onclick="btn_Search_Click"  />
+                    <asp:Label ID="lbl_incorrectdate" runat="server" Text="Incorrect Date Format" ForeColor="Red" Visible="false"></asp:Label>
+            
+            </div>
+            
+
+
+      </div>
+
+      <div class="loginDisplay" style="border: 0px solid #fff;">  <span class="bold"><span id="HeadLoginView_HeadLoginName">
+      <img src="images/user-icon.png" width="35px" align="right" style="text-align: right; margin-left: 10px;" />
+      
+      <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>
+                      <!--[ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"  LogoutPageUrl="~/"/> ]-->
+                    </LoggedInTemplate>
+                </asp:LoginView>
+
+       <br />
+	<span style="font-size: 10px;">(<asp:Label ID="userRole" runat="server" />)</span></span></span>
+        
+        
+      </div>
+         
+            <div class="clear hideSkiplink"> </div>
+        </div>
+        
+         
+        <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="vertical" Visible="false" >
+              
+        </asp:Menu>
+
+    <div style="clear:both;"><br></div>
+    <div id="demo1__" class="leftCol__" >
+   
+		<div id="NavigationMenu3" class="menu" style="float: left;">
+			<ul>
+				<li><a href="Default.aspx"><span class="dashboard_icon"></span>Dashboard</a></li>
+				<li><a href="OrderList.aspx"><span class="manage_orders_icon"></span>Manage Orders</a></li>
+				<li><a href="ManageFoodItems.aspx"><span class="manage_items_icon"></span>Manage Items</a></li>
+                <li><a href="ManageModifierGroup.aspx"><span class="manage_items_icon"></span>Manage Modifiers </a></li>
+				<li><a href="ManageNRestaurantTables.aspx"><span class="manage_table_icon"></span>Table Management</a></li>
+				<li><a href="Reports.aspx"><span class="reports_icon"></span>Reports</a></li>
+                  <% if (Page.User.IsInRole("Admin") || Page.User.IsInRole("Demo"))
+                     { %>
+				<li><a href="ManageCouponCode.aspx"><span class="vouchers_icon"></span>Vouchers</a></li>
+				<li><a href="IPADDevices.aspx"><span class="devices_icon"></span>Devices</a></li>
+                <li><a href="CustomerDataList.aspx"><span class="devices_icon"></span>Customers</a></li>
+				<li><a href="CompUserList.aspx"><span class="user_accounts_icon"></span>User Accounts</a></li>
+				<li><a href="ManageProfile.aspx"><span class="profile_icon"></span>Business Profile</a></li>
+                <li><a href="TimeKeepingList.aspx"><span class="profile_icon"></span>Time Sheets</a></li>
+                
+				<li><a href="Settings.aspx"><span class="settings_icon"></span>Settings</a></li>
+                
+                <%} %>
+				<li><a href="javascript:__doPostBack('ctl00$HeadLoginView$HeadLoginStatus$ctl00','')"><span class="logout_icon"></span>Logout</a></li>
+			</ul>
+		</div>
+        <!-- <li><a href="TimeKeepingList.aspx"><span class="settings_icon"></span>Time Keeping</a></li>-->
+               <!-- <asp:MenuItem NavigateUrl="~/ManageCategories.aspx" Text="Categories" ImageUrl="~/images/icons/categoryico.png" />
+                <asp:MenuItem NavigateUrl="~/About.aspx" Text="Manage Clinets"  ImageUrl="~/images/icons/manageclientico.png"/>
+                <asp:MenuItem NavigateUrl="#" Text="Localization"  ImageUrl="~/images/icons/localizationico.png"/>
+                 <asp:MenuItem NavigateUrl="~/About.aspx" Text="Languages"  ImageUrl="~/images/icons/languageico.png"/>
+    
+               -->
+    
+        </div>
+        <div id="demo2_" class="main" style="width: 1040px;">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+         <asp:Label ID="lblMessage" runat="server"></asp:Label> 
+        </div>
+       
+        <div class="clear"></div>
+    
+    <div id="footer">
+        
+        <div style="float:right;margin-right:20px;">
+        
+        </div>
+    </div>
+    </div>
+    </form>
+</body>
+</html>

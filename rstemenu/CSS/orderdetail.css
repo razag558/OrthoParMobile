@@ -1,0 +1,173 @@
+﻿/* File Created: November 22, 2012 */
+
+
+
+body   
+{
+    background: #fff;/*#b6b7bc;*/
+    font-size: .80em;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: #696969;
+ 
+}
+
+
+
+.maindiv 
+{
+	 border: 1px solid #D1CFCB;
+	 padding: 20px;
+}
+.upspace
+{
+	height:10px;
+}
+
+  
+.errormsg
+{
+	font-size:1.5em;
+	color:#f00;
+}
+
+
+.delbutton
+{
+background:url('../images/icons/deleteIco.png');
+background-repeat:no-repeat;
+width:25px;
+height:21px;
+	
+}
+
+
+.title2
+{
+    font-weight: 700;
+    margin: 0px;
+    padding: 10px  0px  0px 0px;
+    color: #000;
+    border: none;
+    line-height: .5em;
+    font-size: 1em;
+}
+
+
+.hrrowf {
+	line-height:1px;
+	color:#FCFCFC;
+	width: 100%;
+}
+
+.hrrowsmall {
+	line-height:1px;
+	color:#FCFCFC;
+	width: 50%;
+}
+
+tton
+{
+background:url('../images/print.jpg');
+background-repeat:no-repeat;
+width:39px;
+height:37px;
+	
+}
+
+.printbutton
+{
+background:url('../images/print.jpg');
+background-repeat:no-repeat;
+width:39px;
+height:37px;
+	
+}
+
+
+/* fro
+/* from Luqman Orders Module*/ 
+
+.modalBackground {
+	background-color:Black;
+	
+}
+.modalPopup {
+	background-color:#FFFFFF;
+	border-width:3px;
+	border-style:solid;
+	border-color:black;
+	padding-top:10px;
+	padding-left:10px;
+	width:300px;
+	height:140px;
+}
+
+.grid
+{
+    font-family: tahoma;
+    font-size: 12px;
+    border: solid 0px #7f7f7f;
+    border-collapse: collapse;
+    color: #333333;
+    width: 100%;
+}
+.grid th
+{
+     border-color: #989898 #cbcbcb #989898 #989898;
+   border-style: solid solid solid solid;
+    border-width: 1px 1px 1px 1px;
+    color: Menu;
+    padding: 4px 5px 4px 10px;
+    vertical-align: bottom;
+    text-align: left;
+    background-color: #666666;
+}
+.grid td
+{
+    color: #333333;
+   /* padding: 4px 1px 4px 1px;
+    border-bottom: solid 0px #BBD9EE;*/
+    padding: 4px 5px 4px 10px;
+}
+.gridRow
+{
+    background-color: #e1e1e1;
+}
+
+.gridAltRow
+{
+    background-color: #fff;
+}
+
+/*.gridEditRow
+{
+    background-color: #0DC6DE;
+}*/
+/*.gridFooterRow
+{
+    background-color: #E8ECED;
+}*/
+.grid tr.gridRow:hover, .grid tr.gridAltRow:hover
+{
+    font-family: tahoma;
+    font-size: 12px;
+   /* border: solid 0px #7f7f7f;
+    border-collapse: collapse;*/
+    background-color: #99BBE1;
+}
+
+.grid  table 
+{
+	border: 0;
+	
+}
+
+.hCursor
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+/* end luqman **/

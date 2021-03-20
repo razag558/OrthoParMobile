@@ -1,0 +1,53 @@
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\bin\rstemenu.dll
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\bin\rstemenu.pdb
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\bin\PushSharp.WindowsPhone.dll
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\bin\PushSharp.Blackberry.dll
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\obj\Release\rstemenu.csprojResolveAssemblyReference.cache
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\obj\Release\Interop.SpeechLib.dll
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\obj\Release\rstemenu.csproj.ResolveComReference.cache
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\obj\Release\rstemenu.dll.licenses
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\obj\Release\rstemenu.dll
+D:\projects\Ark\DEMO_CMS_Restaurant\rstemenu\obj\Release\rstemenu.pdb
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\rstemenu.dll.config
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\rstemenu.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\rstemenu.pdb
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Newtonsoft.Json.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\PushSharp.Amazon.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\PushSharp.Apple.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\PushSharp.Blackberry.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\PushSharp.Core.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\PushSharp.Firefox.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\PushSharp.Google.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\PushSharp.Windows.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\WCharts.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Newtonsoft.Json.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\WCharts.pdb
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\obj\Release\rstemenu.csprojResolveAssemblyReference.cache
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\obj\Release\Interop.SpeechLib.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\obj\Release\rstemenu.csproj.ResolveComReference.cache
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\obj\Release\rstemenu.dll.licenses
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\obj\Release\rstemenu.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\obj\Release\rstemenu.pdb
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\jose-jwt.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.FileExtensions.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.Json.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.FileProviders.Abstractions.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.FileProviders.Physical.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.FileSystemGlobbing.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Primitives.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Nexmo.Api.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\System.Collections.Immutable.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\System.Runtime.CompilerServices.Unsafe.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.FileExtensions.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Configuration.Json.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.FileProviders.Abstractions.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.FileProviders.Physical.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.FileSystemGlobbing.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\Microsoft.Extensions.Primitives.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\System.Collections.Immutable.xml
+E:\projects\Pers\1_Syed U\Projects\Final Version Menupad\CarryKaraloAdmin\rstemenu\bin\System.Runtime.CompilerServices.Unsafe.xml
