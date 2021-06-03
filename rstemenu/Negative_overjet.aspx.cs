@@ -13,7 +13,8 @@ namespace rstemenu
         int i_value;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Populating_Data();
+            if (!Page.IsPostBack)
+                Populating_Data();
         }
 
         protected void movingbackword_Click(object sender, EventArgs e)

@@ -15,7 +15,8 @@ namespace rstemenu
         int leftbuccalvalue;
         protected void Page_Load(object sender, EventArgs e)
         {
-            populating_data();
+            if (!Page.IsPostBack)
+                populating_data();
         }
 
         protected void backback12_Click(object sender, EventArgs e)

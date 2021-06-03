@@ -20,13 +20,28 @@
             });
             return false;
         }
+
+
+        function showingpanel() {
+            if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "block") {
+                document.getElementById('<%= collapseExample.ClientID%>').style.display = "none";
+               
+                }
+                else if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "none") {
+                    document.getElementById('<%= collapseExample.ClientID%>').style.display = "block"
+            }
+          
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row" style="margin-top: 100px;">
         <div class="col-xm-4" style="text-align: center;">
             <h1 style="color: #6f7a83; text-align: center; font-family: Georgia,'Times New Roman', Times, serif;">Complete Result 
-                <asp:LinkButton Font-Size="Large" Text="( help )" ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" />
+                  <a href="helppage.aspx?id=hp1new&heading=newhelp">
+                     <label>(help) </label>
+                 </a>
             </h1>
         </div>
         <div class="row text-center">
@@ -34,22 +49,23 @@
         </div>
         <div style="float: right; margin-right: 10%;">
             <div class="btn-group">
-                <asp:Button runat="server" ID="download_csb" Visible="false" CssClass="btn btn-default btn-lg" Text="CSV " Style="margin-right: 5px;" OnClick="download_csv_Click" />
-                <asp:Button runat="server" ID="Button1" Width="100px" CssClass="btn btn-default btn-lg" Text="Email" OnClick="Button1_Click" Style="margin-right: 5px;" />
-                <asp:Button runat="server" ID="Button2" CssClass="btn btn-default btn-lg" Text="PDF " Visible="false" Style="margin-right: 5px;" OnClick="download_pdf_Click" />
+                <a>
+                    <label onclick="showingpanel();" style="margin-right: 5px;" class="btn btn-default btn-lg">Email </label>
+                </a>
+                <asp:Button runat="server" ID="Button2" CssClass="btn btn-default btn-lg" Text="PDF" Style="margin-right: 5px;" UseSubmitBehavior="false" OnClick="download_pdf_Click" OnClientClick="return ConvertToImage(this)" />
+                <a href="all_patients_record.aspx">
+                    <label class="btn btn-default btn-lg">Patients</label></a>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="collapseExample" runat="server" style="display: none;">
         <div class="col-xm-6"></div>
         <div class="col-xm-6" style="float: right; margin-top: 2%; margin-right: 6%;">
-            <asp:Panel runat="server" ID="sendid" Visible="false">
-                <asp:TextBox runat="server" ID="txb_email" CssClass="form-control"></asp:TextBox>
-                <div class="text-center" style="margin-top: 2%;">
-                    <asp:Button runat="server" ID="btn_send_email" CssClass="btn btn-danger" UseSubmitBehavior="false" Text="Send Email " OnClick="btn_send_email_Click" OnClientClick="return ConvertToImage(this)" />
-                    <button type="button" runat="server" class="btn btn-primary btn-lg" id="load2" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Processing Order"> Submit Order</button>
-                </div>
-            </asp:Panel>
+
+            <asp:TextBox runat="server" ID="txb_email" CssClass="form-control"></asp:TextBox>
+            <div class="text-center" style="margin-top: 2%;">
+                <asp:Button runat="server" ID="btn_send_email" CssClass="btn btn-danger" UseSubmitBehavior="false" Text="Send Email " OnClick="btn_send_email_Click" OnClientClick="return ConvertToImage(this)" />
+            </div>
         </div>
     </div>
     <div style="display: none;">
@@ -66,7 +82,7 @@
         <asp:Label runat="server" Text="" Font-Size="16px" ForeColor="Red" ID="point_result"></asp:Label>
         <br />
         <asp:Label runat="server" Text="" Font-Size="18px" ID="Label3"></asp:Label>
-        <asp:LinkButton Text="(help)" ID="LinkButton4" runat="server" OnClick="LinkButton4_Click" />
+        <a href="helppage.aspx?id=54&heading=percentage" > <label> (help)</label> </a>
         <br />
         <asp:Label runat="server" Text="" ForeColor="Red" Font-Size="16px" ID="Label4"></asp:Label>
         <br />
@@ -74,13 +90,13 @@
         </asp:Label>
         <asp:Label runat="server" ID="posttreatment" Style="color: white;" />
         <div id="contentcontrol" runat="server" style="width: 100%; height: 600px; margin-top: 50px; padding: 4%;">
-            <div class="col-md-2" runat="server" visible="false">
+          <%--  <div class="col-md-2" runat="server" visible="false">
                 <svg width="70" height="350" viewBox="0 0 200 150">
                     <path d="m 100,0 0,150" />
                     <text x="100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100" y="50 80 110 140 170 200 230 260 290 320 350 380 410 440 470 500"
                         style="font-size: 35px; text-anchor: middle; color: blue;">Post treatment</text>
                 </svg>
-            </div>
+            </div>--%>
             <div class="col-md-10 col-sm-12 col-xm-12" id="chart_class">
                 <div class="col-md-12 col-sm-12 col-xm-12 text-center">
                     <h4 style="color: blue;">PAR Nomogram</h4>
@@ -261,14 +277,14 @@
         for (var b = 0; b < 1; b += 3)
             data.push(d3.range(0, 70, 1.5).map(function (b) {
                 k++;
-                return { x: b, y: k, r: 1 };
+                return { x: b, y: k, r: 2 };
             }));
         //second line loop
         var j = 0;
         for (var i = 22; i < 100; i += 2)
             data.push(d3.range(22, 70, 1.1).map(function (i) {
                 j++;
-                return { x: i, y: j, r: 1 };
+                return { x: i, y: j, r: 2 };
             }));
         var chart = bubbleChart()
             .x(d3.scale.linear().domain([0, 70]))

@@ -7,20 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rstemenu {
-    
-    
-    public partial class all_users {
-        
-        /// <summary>
-        /// panelid1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelid1;
-        
+namespace rstemenu
+{
+
+
+    public partial class all_users
+    {
+
         /// <summary>
         /// gv_all_user control.
         /// </summary>

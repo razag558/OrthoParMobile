@@ -23,7 +23,8 @@ namespace rstemenu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Populating_data();
+            if (!Page.IsPostBack)
+                Populating_data();
         }
 
 

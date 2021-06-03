@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rstemenu {
-    
-    
-    public partial class all_patients_record {
-        
+namespace rstemenu
+{
+
+
+    public partial class all_patients_record
+    {
+
         /// <summary>
         /// download_csv control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button download_csv;
-        
+
         /// <summary>
         /// Button2 control.
         /// </summary>
@@ -29,16 +31,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
-        
-        /// <summary>
-        /// panelid1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelid1;
-        
+
         /// <summary>
         /// gv_patient_info control.
         /// </summary>

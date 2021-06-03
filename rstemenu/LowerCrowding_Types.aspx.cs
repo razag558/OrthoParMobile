@@ -11,7 +11,8 @@ namespace rstemenu
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Checking_Type();
+            if (!Page.IsPostBack)
+                Checking_Type();
         }
 
         protected void btn_uper_Click(object sender, EventArgs e)

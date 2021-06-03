@@ -10,33 +10,37 @@ namespace rstemenu
     public partial class alloptions : System.Web.UI.Page
     {
         Methods obj = new Methods();
-        int inscore = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["status"] != null)
+            if(!Page.IsPostBack)
             {
-                if (Request.QueryString["status"] == "1")
-                    Session["Preorposttreatment"] = "Pretreatment";
-                if (Request.QueryString["status"] == "2")
-                    Session["Preorposttreatment"] = "Posttreatment";
-            }
-            Crowding();
-            BuccalOcclussion();
-            OverJet();
-            OverBite();
-            Midline();
-            Main_Scoring_setting();
+                if (Request.QueryString["status"] != null)
+                {
+                    if (Request.QueryString["status"] == "1")
+                        Session["Preorposttreatment"] = "Pretreatment";
+                    if (Request.QueryString["status"] == "2")
+                        Session["Preorposttreatment"] = "Posttreatment";
+                }
+                Crowding();
+                BuccalOcclussion();
+                OverJet();
+                OverBite();
+                Midline();
+                Main_Scoring_setting();
 
-            if (Convert.ToString(Session["btn_anterior_crowding"]) == "1")
-                btn_crowding.Enabled = false;
-            if (Convert.ToString(Session["btn_buccalocclusion"]) == "1")
-                btn_occlusion.Enabled = false;
-            if (Convert.ToString(Session["overbite"]) == "1")
-                btn_boccusion.Enabled = false;
-            if (Convert.ToString(Session["overjet"]) == "1")
-                btn_aoccusion.Enabled = false;
-            if (Convert.ToString(Session["midline"]) == "1")
-                btn_miding.Enabled = false;
+                if (Convert.ToString(Session["btn_anterior_crowding"]) == "1")
+                    btn_crowding.Enabled = false;
+                if (Convert.ToString(Session["btn_buccalocclusion"]) == "1")
+                    btn_occlusion.Enabled = false;
+                if (Convert.ToString(Session["overbite"]) == "1")
+                    btn_boccusion.Enabled = false;
+                if (Convert.ToString(Session["overjet"]) == "1")
+                    btn_aoccusion.Enabled = false;
+                if (Convert.ToString(Session["midline"]) == "1")
+                    btn_miding.Enabled = false;
+            }
+           
         }
 
         protected void btn_crowding_Click(object sender, EventArgs e)
@@ -88,7 +92,7 @@ namespace rstemenu
                     Response.Redirect("~/Treatment_type.aspx");
                 }
                 else
-                    response_label.Visible = true;
+                    error_show.Visible = true;
             }
             else if (Convert.ToString(Session["Preorposttreatment"]) == "Posttreatment")
             {
@@ -104,16 +108,16 @@ namespace rstemenu
                     Response.Redirect("~/Treatment_type.aspx");
                 }
                 else
-                    response_label.Visible = true;
+                    error_show.Visible = true;
             }
         }
 
         protected void reset_button_Click(object sender, EventArgs e)
         {
-            Session["btn_anterior_crowding"] = "0";
+            Session["btn_anterior_crowding_uper"] = "0"; 
             Session["a_value"] = "0";
             Session["b_value"] = "0";
-            Response.Redirect("alloptions.aspx");
+            btn_crowding.Enabled = true;
         }
 
         protected void reset_button2_Click(object sender, EventArgs e)
@@ -343,7 +347,6 @@ namespace rstemenu
             int total = 0;
             if (Convert.ToString(Session["Preorposttreatment"]) == "Pretreatment")
             {
-
                 if (Session["pre_lower_crowding_Sum_Value"].ToString().Length > 0)
                     total = total + Convert.ToInt32(Session["pre_lower_crowding_Sum_Value"]);
                 if (Session["pre_uper_crowding_Sum_Value"].ToString().Length > 0)

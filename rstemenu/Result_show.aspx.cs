@@ -98,78 +98,101 @@ namespace rstemenu
             }
         }
 
-        protected void LinkButton4_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/helppage.aspx?id=54&heading=percentage");
-        }
+      
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/helppage.aspx?id=hp1new&heading=newhelp");
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            sendid.Visible = true;
-        }
+        [Obsolete]
         protected void download_pdf_Click(object sender, EventArgs e)
         {
-            patient_id = Convert.ToString(Session["patient_id"]);
-            pat_name = Convert.ToString(Session["patient_name"]);
-            doctor_name = Convert.ToString(Session["doctor_name"]);
-            entry_date = Convert.ToString(Session["entry_date"]);
-            gender = Convert.ToString(Session["gender"]);
-            StringBuilder columnbind = new StringBuilder();
-            columnbind.Append("<table Width='100%' border='0'><tr><td style='text-align:left'><img width='50px' src =" + "'http://orthopar.org/images/parslogo.png'></td>");
-            columnbind.Append("<td style='text-align:right'>http://orthopar.org</td></tr></table>");
-            columnbind.Append("<br><h2> PAR COMPLETE RESULT </h2> ");
-            columnbind.Append("Patient ID: <t/> " + patient_id + "<br/> ");
-            columnbind.Append("Patient Name: <t/> " + pat_name + "<br/> ");
-            columnbind.Append("Doctor Name: <t/> " + doctor_name + "<br/> ");
-            columnbind.Append("<div>Entry Date: " + entry_date + "</div>");
-            columnbind.Append("<div>Gender: " + gender.Trim() + "</div>");
-            columnbind.Append("<div>Any impacted teeth? " + impact_teeth.Trim() + "</div>");
-            columnbind.Append("<div>Any missing teeth? " + missing_teeth.Trim() + "</div>");
-            columnbind.Append("<div>Any teeth extracted?? " + extracted_teeth.Trim() + "</div>");
-            columnbind.Append("<div>Prosthetic replacement for any of the spaces? " + replacement_teeth.Trim() + "</div>");
-            columnbind.Append("<div>Any restorative treatment affecting the malocclusion? " + restorative.Trim() + "</div>");
-            columnbind.Append("--------------------------------------------------------------------------------");
-            columnbind.Append("<div>");
-            columnbind.Append("1. Pretreatment value of PAR (P1) : " + pre_value + "Points   <br/>");
-            columnbind.Append("2. Posttreatment value of PAR (P2) : " + post_value + "Points   <br/>");
-            columnbind.Append("3. PAR point-base treatment change (P1 - P2): " + result_value + "Points   <br/>");
-            columnbind.Append(point_result.Text + "  <br/>");
-            columnbind.Append("4. PAR percentage-based treatment change {(P1-P2/P1) * 100}: " + percentage + "%   <br/>");
-            columnbind.Append(Label4.Text + "  <br/>");
-            columnbind.Append("5.PAR nomogram: Please visually plot P1 score on the X axis and P2 score on the Y axis of the PAR nomograph below to identify the treatment outcome based on the intersection of the visualised x and y point.  <br/> ");
-            columnbind.Append("</div>");
-            columnbind.Append("<div>");
-            columnbind.Append("<br><br><div><img src =" + "'http://orthopar.org/images/Graph-ParNomogram.jpg'" + " </div>");
-            columnbind.Append("</div>");
-            StringReader sr = new StringReader(columnbind.ToString());
-            Document pdfDoc = new Document(PageSize.LEGAL_LANDSCAPE, 10f, 10f, 10f, 0f);
-            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-            byte[] bytes;
-            using (MemoryStream memoryStream = new MemoryStream())
+            try
             {
-                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
-                pdfDoc.Open();
-                htmlparser.Parse(sr);
-                pdfDoc.Close();
-                bytes = memoryStream.ToArray();
-                memoryStream.Close();
+                string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+                BindPatientVlaues();
+                StringBuilder columnbind = new StringBuilder();
+                columnbind.Append("<table Width='100%' border='0'><tr><td style='text-align:left'> <img width='50px' src =" + "'http://orthopar.org/images/parslogo.png'> </td>");
+                columnbind.Append("<td style='text-align:right'> https://orthopar.org </td></tr></table>");
+                columnbind.Append("<br><h2> PAR COMPLETE RESULT </h2> ");
+                columnbind.Append("Patient ID: <t/> " + patient_id + "<br/> ");
+                columnbind.Append("Patient Name: <t/> " + pat_name + "<br/> ");
+                columnbind.Append("Doctor Name: <t/> " + doctor_name + "<br/> ");
+                columnbind.Append("<div>Entry Date: " + entry_date + "</div>");
+                if (gender.Length > 0)
+                    columnbind.Append("<div>Gender: " + gender.Trim() + "</div>");
+                else
+                    columnbind.Append("<div>Gender: </div>");
+                if (impact_teeth.Length > 0)
+                    columnbind.Append("<div>Any impacted teeth? " + impact_teeth.Trim() + "</div>");
+                else
+                    columnbind.Append("<div>Any impacted teeth?  </div>");
+                //3
+                if (missing_teeth.Length > 0)
+                    columnbind.Append("<div>Any missing teeth? " + missing_teeth.Trim() + "</div>");
+                else
+                    columnbind.Append("<div>Any missing teeth?  </div>");
+                //4
+                if (extracted_teeth.Length > 0)
+                    columnbind.Append("<div>Any teeth extracted?? " + extracted_teeth.Trim() + "</div>");
+                else
+                    columnbind.Append("<div>Any teeth extracted??  </div>");
+                //5
+                if (extracted_teeth.Length > 0)
+                    columnbind.Append("<div>Prosthetic replacement for any of the spaces? " + replacement_teeth.Trim() + "</div>");
+                else
+                    columnbind.Append("<div>Prosthetic replacement for any of the spaces? </div>");
+                //6
+                if (extracted_teeth.Length > 0)
+                    columnbind.Append("<div>Any restorative treatment affecting the malocclusion? " + restorative.Trim() + "</div>");
+                else
+                    columnbind.Append("<div>Any restorative treatment affecting the malocclusion?  </div>");
+
+                if (Request.QueryString["pre"] != null)
+                    pre_value = Request.QueryString["pre"];
+                if (Request.QueryString["post"] != null)
+                    post_value = Request.QueryString["post"];
+                result_value = Convert.ToInt32(pre_value) - Convert.ToInt32(post_value);
+                percentage = Math.Round(((Convert.ToDouble(pre_value) - Convert.ToDouble(post_value)) * 100) / Convert.ToDouble(pre_value), 2);
+                columnbind.Append("--------------------------------------------------------------------------------");
+                columnbind.Append("<div>");
+                columnbind.Append("1. Pretreatment Value of PAR (P1) : " + pre_value + "Points   <br/>");
+                columnbind.Append("2. Posttreatment Value of PAR (P2) : " + post_value + "Points   <br/>");
+                columnbind.Append("3. PAR Point-base treatment change (P1 - P2): " + result_value + "Points   <br/>");
+                columnbind.Append(point_result.Text + "  <br/>");
+                columnbind.Append("4. PAR Percentage-based Treatment Change{(P1-P2/P1) * 100} : " + percentage + "%   <br/>");
+                columnbind.Append(Label4.Text + "  <br/>");
+                columnbind.Append("</div>");
+                columnbind.Append("<div>");
+                columnbind.Append("<br/> <br/> <div> <img width='500px' height='300px' src=" + "'" + filePath + "'> </div>");
+                columnbind.Append("</div>");
+                StringReader sr = new StringReader(columnbind.ToString());
+                Document pdfDoc = new Document(PageSize.LEGAL_LANDSCAPE, 10f, 10f, 10f, 0f);
+                HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                byte[] bytes;
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
+                    pdfDoc.Open();
+                    htmlparser.Parse(sr);
+                    pdfDoc.Close();
+                    bytes = memoryStream.ToArray();
+                    memoryStream.Close();
+                }
+
+              
+                Response.Clear();
+                Response.Buffer = true;
+                Response.ContentType = "application/";
+                Response.AddHeader("content-disposition", "attachment;filename=PAR-" + patient_id + ".pdf");
+                Response.Charset = "";
+                Response.ContentEncoding = System.Text.Encoding.GetEncoding(1252);
+                Response.Buffer = true;
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.BinaryWrite(bytes);
+                Response.End();
+                Response.Close();
             }
-            Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=PAR-" + patient_id + ".pdf");
-            Response.Charset = "";
-            Response.ContentType = "application/text";
-            Response.ContentEncoding = System.Text.Encoding.GetEncoding(1252);
-            Response.Buffer = true;
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.BinaryWrite(bytes);
-            Response.End();
-            Response.Close();
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
         }
         protected void download_csv_Click(object sender, EventArgs e)
         {
@@ -229,17 +252,17 @@ namespace rstemenu
             Response.Flush();
             Response.End();
         }
+
         protected void btn_send_email_Click(object sender, EventArgs e)
         {
-            string nameofimage = "";
-            string filePath = "";
-            nameofimage = SavingImage();
-            filePath = "http://m.orthopar.org/canvasimages/" + nameofimage;
+
+
+            string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
             string emailto = txb_email.Text;
             try
             {
                 BindPatientVlaues();
-                string Header = "<br><p><img src=" + "'http://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right'" + "><a href='" + "http://orthopar.org'" + " target='" + "_blank'" + ">http://orthopar.org</a><br><br>";
+                string Header = "<br><p><img src=" + "'https://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right'" + "><a href='" + "https://orthopar.org'" + " target='" + "_blank'" + ">https://orthopar.org</a><br><br>";
                 string chartdata = "<p> <img  width='400px' height='500px' src =" + "'" + filePath + "'" + "/> </p>";
                 string PatientOtherDetail = "";
                 PatientOtherDetail = "<p>Doctor Name: " + doctor_name + "</p>";
@@ -299,7 +322,7 @@ namespace rstemenu
                 message.Subject = "Par Result Report";
                 message.Body = bodycontent;
                 message.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtpout.asia.secureserver.net", 80);
+                SmtpClient smtp = new SmtpClient("smtpout.asia.secureserver.net", 3535);
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.EnableSsl = false;
                 NetworkCredential nc = new NetworkCredential("info@orthopar.org", "Ayesha-22");

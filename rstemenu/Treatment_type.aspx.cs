@@ -16,44 +16,47 @@ namespace rstemenu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["pat_id"] != null)
+            if (!Page.IsPostBack)
             {
-                ReSetting_Session_values();
-                Session["Patient_ID"] = Request.QueryString["pat_id"].ToString();
-                Populating_Patient_data(Session["Patient_ID"].ToString());
+                if (Request.QueryString["pat_id"] != null)
+                {
+                    ReSetting_Session_values();
+                    Session["Patient_ID"] = Request.QueryString["pat_id"].ToString();
+                    Populating_Patient_data(Session["Patient_ID"].ToString());
+                }
+                if (Request.QueryString["id"] != null)
+                {
+                    ReSetting_Session_values();
+                    Session["Patient_ID"] = Request.QueryString["id"].ToString();
+                }
+                Session["btn_anterior_crowding"] = "0";
+                Session["btn_anterior_crowding_uper"] = "0";
+                Session["btn_left_buccalocclusion"] = "0";
+                Session["btn_buccalocclusion"] = "0";
+                Session["overbite"] = "0";
+                Session["overjet"] = "0";
+                Session["midline"] = "0";
+                Crowding();
+                BuccalOcclussion();
+                OverJet();
+                OverBite();
+                Midline();
+                Main_Scoring_setting();
+                posttreatment = Convert.ToInt32(Session["Posttreatment_value"]);
+                pretreatment = Convert.ToInt32(Session["Pretreatment_value"]);
+                if (pretreatment == -1)
+                    lbl_pre_value_p1.Text = "Pre-Treatment  Value (P1) = no value";
+                else
+                    lbl_pre_value_p1.Text = "Pre-Treatment  Value (P1) = " + pretreatment;
+                if (posttreatment == -1)
+                    lbl_pre_value_p2.Text = "Post-Treatment Value (P2) =  no value";
+                else
+                    lbl_pre_value_p2.Text = "Post-Treatment Value (P2) = " + posttreatment;
+                if (Convert.ToInt32(Session["btn_pre_treatemnt"]) != 0)
+                    btn_pretreatment.Enabled = false;
+                if (Convert.ToInt32(Session["btn_post_treatment"]) != 0)
+                    btn_posttreatment.Enabled = false;
             }
-            if (Request.QueryString["id"] != null)
-            {
-                ReSetting_Session_values();
-                Session["Patient_ID"] = Request.QueryString["id"].ToString();
-            }
-            Session["btn_anterior_crowding"] = "0";
-            Session["btn_anterior_crowding_uper"] = "0";
-            Session["btn_left_buccalocclusion"] = "0";
-            Session["btn_buccalocclusion"] = "0";
-            Session["overbite"] = "0";
-            Session["overjet"] = "0";
-            Session["midline"] = "0";
-            Crowding();
-            BuccalOcclussion();
-            OverJet();
-            OverBite();
-            Midline();
-            Main_Scoring_setting();
-            posttreatment = Convert.ToInt32(Session["Posttreatment_value"]);
-            pretreatment = Convert.ToInt32(Session["Pretreatment_value"]);
-            if (pretreatment == -1)
-                lbl_pre_value_p1.Text = "Pre-Treatment  Value (P1) = no value";
-            else
-                lbl_pre_value_p1.Text = "Pre-Treatment  Value (P1) = " + pretreatment;
-            if (posttreatment == -1)
-                lbl_pre_value_p2.Text = "Post-Treatment Value (P2) =  no value";
-            else
-                lbl_pre_value_p2.Text = "Post-Treatment Value (P2) = " + posttreatment;
-            if (Convert.ToInt32(Session["btn_pre_treatemnt"]) != 0)
-                btn_pretreatment.Enabled = false;
-            if (Convert.ToInt32(Session["btn_post_treatment"]) != 0)
-                btn_posttreatment.Enabled = false;
         }
 
         protected void btn_pretreatment_Click(object sender, EventArgs e)
@@ -68,18 +71,21 @@ namespace rstemenu
 
         protected void reset_button_Click(object sender, EventArgs e)
         {
-            Session["Pretreatment_value"] = "-1";
-            Response.Redirect("~/Treatment_type.aspx");
+            btn_pretreatment.Enabled = true;
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Session["Posttreatment_value"] = "-1";
-            Response.Redirect("~/Treatment_type.aspx");
+            btn_posttreatment.Enabled = true;
         }
 
         protected void result_show_Click(object sender, EventArgs e)
         {
+            Main_Scoring_setting();
+
+            posttreatment = Convert.ToInt32(Session["Posttreatment_value"]);
+            pretreatment = Convert.ToInt32(Session["Pretreatment_value"]);
+
             if (posttreatment != -1 && pretreatment != -1)
             {
                 int result_value = pretreatment - posttreatment;
@@ -414,7 +420,6 @@ namespace rstemenu
                 post_midline = post_midline + Convert.ToInt32(Session["post_Midline"]);
             Session["post_midline_Value"] = post_midline * 4;
         }
-
 
         public void ReSetting_Session_values()
         {

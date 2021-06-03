@@ -114,13 +114,13 @@ namespace rstemenu
         protected global::System.Web.UI.WebControls.LinkButton reset_button5;
 
         /// <summary>
-        /// response_label control.
+        /// error_show control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label response_label;
+        protected global::System.Web.UI.WebControls.Label error_show;
 
         /// <summary>
         /// Submit control.

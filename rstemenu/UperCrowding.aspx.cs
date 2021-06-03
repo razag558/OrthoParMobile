@@ -17,7 +17,8 @@ namespace rstemenu
         int total;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Populating_data();
+            if (!Page.IsPostBack)
+                Populating_data();
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -101,7 +102,7 @@ namespace rstemenu
                     crowding_uper_left_2_s5.Checked = true;
 
             }
-            else 
+            else
             if (Convert.ToString(Session["Preorposttreatment"]) == "Posttreatment" &&
                       Convert.ToString(Session["post_uper_anter_segment_type_definer"]) == "Permanent")
             {
@@ -179,151 +180,84 @@ namespace rstemenu
         }
 
 
-
-
-
         public void Calculations()
         {
             if (crowding_uper_right_1_s0.Checked)
-            {
                 step1 = 0;
-            }
             else if (crowding_uper_right_1_s2.Checked)
-            {
                 step1 = 2;
-            }
             else if (crowding_uper_right_1_s3.Checked)
-            {
                 step1 = 3;
-            }
             else if (crowding_uper_right_1_s4.Checked)
-            {
                 step1 = 4;
-            }
             else if (crowding_uper_right_1_s1.Checked)
-            {
                 step1 = 1;
-            }
             else if (crowding_uper_right_1_s5.Checked)
-            {
                 step1 = 5;
-            }
 
 
 
             //  step 2 in process
 
             if (crowding_uper_right_2_s0.Checked)
-            {
                 step2 = 0;
-            }
-            else if (crowding_uper_right_2_s2.Checked)
-            {
-                step2 = 2;
-            }
-            else if (crowding_uper_right_2_s3.Checked)
-            {
-                step2 = 3;
-            }
-            else if (crowding_uper_right_2_s4.Checked)
-            {
-                step2 = 4;
-            }
             else if (crowding_uper_right_2_s1.Checked)
-            {
                 step2 = 1;
-            }
+            else if (crowding_uper_right_2_s2.Checked)
+                step2 = 2;
+            else if (crowding_uper_right_2_s3.Checked)
+                step2 = 3;
+            else if (crowding_uper_right_2_s4.Checked)
+                step2 = 4;
             else if (crowding_uper_right_2_s5.Checked)
-            {
                 step2 = 5;
-            }
 
 
             // step 3 in process
 
             if (crowding_uper_right_3_s0.Checked)
-            {
                 step3 = 0;
-            }
-            else if (crowding_uper_right_3_s2.Checked)
-            {
-                step3 = 2;
-            }
-            else if (crowding_uper_right_3_s3.Checked)
-            {
-                step3 = 3;
-            }
-            else if (crowding_uper_right_3_s4.Checked)
-            {
-                step3 = 4;
-            }
             else if (crowding_uper_right_3_s1.Checked)
-            {
                 step3 = 1;
-            }
+            else if (crowding_uper_right_3_s2.Checked)
+                step3 = 2;
+            else if (crowding_uper_right_3_s3.Checked)
+                step3 = 3;
+            else if (crowding_uper_right_3_s4.Checked)
+                step3 = 4;
             else if (crowding_uper_right_3_s5.Checked)
-            {
                 step3 = 5;
-            }
-
-
 
 
             //  step 4 in process
 
             if (crowding_uper_left_1_s0.Checked)
-            {
                 step4 = 0;
-            }
-            else if (crowding_uper_left_1_s2.Checked)
-            {
-                step4 = 2;
-            }
-            else if (crowding_uper_left_1_s3.Checked)
-            {
-                step4 = 3;
-            }
-            else if (crowding_uper_left_1_s4.Checked)
-            {
-                step4 = 4;
-            }
             else if (crowding_uper_left_1_s1.Checked)
-            {
                 step4 = 1;
-            }
+            else if (crowding_uper_left_1_s2.Checked)
+                step4 = 2;
+            else if (crowding_uper_left_1_s3.Checked)
+                step4 = 3;
+            else if (crowding_uper_left_1_s4.Checked)
+                step4 = 4;
             else if (crowding_uper_left_1_s5.Checked)
-            {
                 step4 = 5;
-            }
-
-
 
             //  step 5 in process
 
             if (crowding_uper_left_2_s0.Checked)
-            {
                 step5 = 0;
-            }
             else if (crowding_uper_left_2_s2.Checked)
-            {
                 step5 = 2;
-            }
             else if (crowding_uper_left_2_s3.Checked)
-            {
                 step5 = 3;
-            }
             else if (crowding_uper_left_2_s4.Checked)
-            {
                 step5 = 4;
-            }
             else if (crowding_uper_left_2_s1.Checked)
-            {
                 step5 = 1;
-            }
             else if (crowding_uper_left_2_s5.Checked)
-            {
                 step5 = 5;
-            }
 
 
             if (Convert.ToString(Session["Preorposttreatment"]) == "Pretreatment")
@@ -369,16 +303,11 @@ namespace rstemenu
 
                 }
 
-
-
                 Session["btn_anterior_crowding_uper"] = "1";
-
                 Response.Redirect("Crowding.aspx");
             }
             else
-            {
                 showing_error.Visible = true;
-            }
         }
 
 

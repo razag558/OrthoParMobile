@@ -57,8 +57,28 @@ namespace rstemenu
             {
                 Response.Write("" + ex);
             }
-        } 
+        }
 
-        
+        protected void datatable_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton l = (LinkButton)e.Row.FindControl("btn_Delete");
+                if (l != null && l.CommandName == "Delete")
+                    l.OnClientClick = "return confirm('Are you sure want to delete this record?');";
+            }
+        }
+
+        protected void datatable_PreRender(object sender, EventArgs e)
+        {
+            if (gv_all_user.Rows.Count > 0)
+            {
+                gv_all_user.UseAccessibleHeader = true;
+                gv_all_user.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
+
     }
 }

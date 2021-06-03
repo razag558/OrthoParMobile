@@ -20,16 +20,15 @@ namespace rstemenu
         string username;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            ReSetting_Session_values();
-
-            Get_patients_record();
-
+            if(!Page.IsPostBack)
+            {
+                ReSetting_Session_values();
+                Get_patients_record();
+            }
         }
         protected void Get_patients_record()
         {
             username = User.Identity.Name;
-
             gv_patient_info.DataSource = obj.fetching_patient_info(username);
             gv_patient_info.DataBind();
         }
@@ -153,9 +152,6 @@ namespace rstemenu
             username = User.Identity.Name;
 
             DataTable datatable = obj.fetching_patient_info(username);
-
-
-
 
             StringBuilder columnbind = new StringBuilder();
 
@@ -316,7 +312,25 @@ namespace rstemenu
 
             Session["btn_pre_treatemnt"] = "0";
             Session["btn_post_treatment"] = "0";
+        }
 
+        protected void datatable_RowDataBound(object sender, GridViewRowEventArgs e)
+        {     
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton l = (LinkButton)e.Row.FindControl("btn_Delete");
+                if (l != null && l.CommandName == "Delete")
+                    l.OnClientClick = "return confirm('Are you sure want to delete this record?');";
+            }
+        }
+
+        protected void datatable_PreRender(object sender, EventArgs e)
+        {
+            if (gv_patient_info.Rows.Count > 0)
+            {
+                gv_patient_info.UseAccessibleHeader = true;
+                gv_patient_info.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

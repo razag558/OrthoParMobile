@@ -17,7 +17,8 @@ namespace rstemenu
         int rightvalue;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Populating_data();
+            if (!Page.IsPostBack)
+                Populating_data();
         }
         protected void submit_lower_right_Click(object sender, EventArgs e)
         {

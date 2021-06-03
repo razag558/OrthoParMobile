@@ -40,12 +40,14 @@ namespace rstemenu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Request.QueryString["id"] != null)
+            if (!Page.IsPostBack)
             {
-                BindPatientVlaues(Int32.Parse(Request.QueryString["id"].ToString()));
-                BindParsValues(Int32.Parse(Request.QueryString["id"].ToString()));
-                id = Request.QueryString["id"].ToString();
+                if (Request.QueryString["id"] != null)
+                {
+                    BindPatientVlaues(Int32.Parse(Request.QueryString["id"].ToString()));
+                    BindParsValues(Int32.Parse(Request.QueryString["id"].ToString()));
+                    id = Request.QueryString["id"].ToString();
+                }
             }
 
         }
@@ -84,7 +86,6 @@ namespace rstemenu
                 point_result.Text = "(Point based treatment changes (P1-P2): As the change is less than 22 points, this indicates no improvement) ";
             }
 
-
             Label3.Text = "4. PAR percentage-based treatment change {(P1-P2/P1) * 100}:  " + percentage_value + "%";
 
             if (percentage_value >= 30 && percentage_value < 70)
@@ -99,10 +100,7 @@ namespace rstemenu
             {
                 Label4.Text = " (PAR percentage result is greater than 70% which indicates Great improvement)";
             }
-
-
         }
-
 
         public void BindPatientVlaues(int pid)
         {
@@ -128,51 +126,80 @@ namespace rstemenu
             }
 
         }
-        protected void LinkButton4_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/helppage.aspx?id=54&heading=percentage");
-        }
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/helppage.aspx?id=hp1new&heading=newhelp");
-        }
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            sendid.Visible = true;
-        }
+
+
+        [Obsolete]
         protected void download_pdf_Click(object sender, EventArgs e)
         {
+ 
+            BindPatientVlaues(Int32.Parse(Request.QueryString["id"].ToString()));
 
-
+            string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
             StringBuilder columnbind = new StringBuilder();
 
             columnbind.Append("<table Width='100%' border='0'><tr><td style='text-align:left'><img width='50px' src =" + "'http://orthopar.org/images/parslogo.png'></td>");
             columnbind.Append("<td style='text-align:right'>http://orthopar.org</td></tr></table>");
 
-            columnbind.Append("<br><h2> PAR COMPLETE RESULT </h2> ");
+
+            columnbind.Append("<br><h2>PAR COMPLETE RESULT </h2> ");
 
             columnbind.Append("Patient ID: <t/> " + patient_id + "<br/> ");
             columnbind.Append("Patient Name: <t/> " + pat_name + "<br/> ");
             columnbind.Append("Doctor Name: <t/> " + doctor_name + "<br/> ");
+
             columnbind.Append("<p>Entry Date: " + entry_date + "</p>");
-            columnbind.Append("<p>Gender: " + gender.Trim() + "</p>");
-            columnbind.Append("<p>Any impacted teeth? " + impact_teeth.Trim() + "</p>");
-            columnbind.Append("<p>Any missing teeth? " + missing_teeth.Trim() + "</p>");
-            columnbind.Append("<p>Any teeth extracted?? " + extracted_teeth.Trim() + "</p>");
-            columnbind.Append("<p>Prosthetic replacement for any of the spaces? " + replacement_teeth.Trim() + "</p>");
-            columnbind.Append("<p>Any restorative treatment affecting the malocclusion? " + restorative.Trim() + "</p>");
+
+            if (gender.Length > 0)
+                columnbind.Append("<div>Gender: " + gender.Trim() + "</div>");
+            else
+                columnbind.Append("<div>Gender: </div>");
+
+            if (impact_teeth.Length > 0)
+                columnbind.Append("<div>Any impacted teeth? " + impact_teeth.Trim() + "</div>");
+            else
+                columnbind.Append("<div>Any impacted teeth?  </div>");
+            //3
+            if (missing_teeth.Length > 0)
+                columnbind.Append("<div>Any missing teeth? " + missing_teeth.Trim() + "</div>");
+            else
+                columnbind.Append("<div>Any missing teeth?  </div>");
+            //4
+
+            if (extracted_teeth.Length > 0)
+                columnbind.Append("<div>Any teeth extracted?? " + extracted_teeth.Trim() + "</div>");
+            else
+                columnbind.Append("<div>Any teeth extracted??  </div>");
+            //5
+            if (extracted_teeth.Length > 0)
+                columnbind.Append("<div>Prosthetic replacement for any of the spaces? " + replacement_teeth.Trim() + "</div>");
+            else
+                columnbind.Append("<div>Prosthetic replacement for any of the spaces? </div>");
+            //6
+            if (extracted_teeth.Length > 0)
+                columnbind.Append("<div>Any restorative treatment affecting the malocclusion? " + restorative.Trim() + "</div>");
+            else
+                columnbind.Append("<div>Any restorative treatment affecting the malocclusion?  </div>");
+
+
+
             columnbind.Append("----------------------------------------------------------------------------------------------------");
-            columnbind.Append("1. Pretreatment value of PAR (P1) : " + pre_value + "Points   <br/>");
-            columnbind.Append("2. Posttreatment value of PAR (P2) : " + post_value + "Points   <br/>");
-            columnbind.Append("3. PAR point-base treatment change (P1 - P2): " + st_point_value + "Points   <br/>");
+
+            columnbind.Append("<div>");
+            columnbind.Append("1. Pretreatment Value of PAR (P1) : " + pre_value + "Points   <br/>");
+            columnbind.Append("2. Posttreatment Value of PAR (P2) : " + post_value + "Points   <br/>");
+            columnbind.Append("3. PAR Point-base treatment change (P1 - P2): " + st_point_value + "Points   <br/>");
             columnbind.Append(point_result.Text + "  <br/>");
-            columnbind.Append("4. PAR percentage-based treatment change {(P1-P2/P1) * 100} : " + percentage_value + "%   <br/>");
+            columnbind.Append("4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage_value + "%   <br/>");
             columnbind.Append(Label4.Text + "  <br/>");
-            columnbind.Append("5.PAR nomogram: Please visually plot P1 score on the X axis and P2 score on the Y axis of the PAR nomograph below to identify the treatment outcome based on the intersection of the visualised x and y point.  <br/> ");
+            //columnbind.Append("5.PAR nomogram: Please visually plot P1 score on the X axis and P2 score on the Y axis of the PAR nomograph below to identify the treatment outcome based on the intersection of the visualised x and y point.  <br/> ");
+            columnbind.Append("</div>");
+
             columnbind.Append("<p>");
-            columnbind.Append("<br><br><p><img src =" + "'http://orthopar.org/images/Graph-ParNomogram.jpg'" + " </p>");
+            columnbind.Append("<br/> <br/> <div> <img width='500px' height='300px' src=" + "'" + filePath + "'> </div>");
             columnbind.Append("</p>");
+
             StringReader sr = new StringReader(columnbind.ToString());
+
             Document pdfDoc = new Document(PageSize.LEGAL_LANDSCAPE, 10f, 10f, 10f, 0f);
             HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
             byte[] bytes;
@@ -185,7 +212,6 @@ namespace rstemenu
                 bytes = memoryStream.ToArray();
                 memoryStream.Close();
             }
-
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment;filename=P" + patient_id + ".pdf");
@@ -198,6 +224,7 @@ namespace rstemenu
             Response.End();
             Response.Close();
         }
+
 
         protected void download_csv_Click(object sender, EventArgs e)
         {
@@ -256,14 +283,11 @@ namespace rstemenu
         
         protected void btn_send_email_Click(object sender, EventArgs e)
         {
-            string nameofimage = "";
-            string filePath = "";
-            nameofimage = SavingImage();
-            filePath = "http://m.orthopar.org/canvasimages/" + nameofimage;
+            string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
             string emailto = txb_email.Text;
             try
             {
-                string Header = "<br><p><img src=" + "'http://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right;'" + ">http://orthopar.org<br><br>";
+                string Header = "<br><p><img src=" + "'https://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right;'" + ">http://orthopar.org<br><br>";
                 string chartdata = "<p> <img src =" + "'" + filePath + "'" + "/> </p>";
                 string PatientOtherDetail = "";
                 PatientOtherDetail = "<p>Doctor Name: " + doctor_name + "</p>";
@@ -289,13 +313,13 @@ namespace rstemenu
                     st_percentage = " (PAR percentage result is greater than 70% which indicates Great improvement)";
                 string bodycontent = Header + "<h2>PAR COMPLETE RESULT</h2><br><b>Dear " + doctor_name + "</b> <br><br> Here your Assessment<br><p>Patient Name: " + pat_name + "</p><p>Patient ID: " + patient_id.ToString() + "</p>" + PatientOtherDetail + "<p> 1.Pretreatment Value of PAR (P1) : " + pre_value + "</p><p> 2.Posttreatment Value of PAR (P2): " + post_value + "</p><p>3. PAR Point-base treatment change (P1 - P2): " + st_point_value + " points </p><p> " + result + "</p><p>4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage_value + "%<br><br>" + st_percentage + "<br><br>" + chartdata + "<br><br><b>ORTHO PAR</b>";
 
-                MailMessage message = new MailMessage();
+                MailMessage message = new MailMessage(  );
                 message.To.Add(new MailAddress(emailto));
                 message.From = new MailAddress("info@orthopar.org");
                 message.Subject = "Par Result Report";
                 message.Body = bodycontent;
                 message.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtpout.asia.secureserver.net", 80);
+                SmtpClient smtp = new SmtpClient("smtpout.asia.secureserver.net", 3535);
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.EnableSsl = false;
                 smtp.UseDefaultCredentials = false;

@@ -11,9 +11,12 @@ namespace rstemenu
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Button_text_with_Value();
-            if (Convert.ToString(Session["btn_anterior_crowding_uper"]) == "1")
-                btn_uper.Enabled = false;
+            if(!Page.IsPostBack)
+            {
+                Button_text_with_Value();
+                if (Convert.ToString(Session["btn_anterior_crowding_uper"]) == "1")
+                    btn_uper.Enabled = false;
+            }
         }
 
         protected void btn_uper_Click(object sender, EventArgs e)
@@ -34,8 +37,10 @@ namespace rstemenu
         protected void reset_button5_Click(object sender, EventArgs e)
         {
             Session["btn_anterior_crowding_uper"] = "0";
+            btn_uper.Enabled = true;
             Session["a_value"] = "0";
-            Response.Redirect("~/Crowding.aspx");
+
+
         }
 
         public void Button_text_with_Value()

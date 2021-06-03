@@ -16,15 +16,19 @@ namespace rstemenu
         int step5 = 6;
         int rightvalue;
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+                Populating_data();
+        }
+
+
         protected void submit_lower_right_Click(object sender, EventArgs e)
         {
             Calculations();
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            Populating_data();
-        }
+
 
         public void Calculations()
         {
