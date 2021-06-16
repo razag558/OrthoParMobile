@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rstemenu.Account {
-    
-    
-    public partial class Login {
-        
+namespace rstemenu.Account
+{
+
+
+    public partial class Login
+    {
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace rstemenu.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// Form1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace rstemenu.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
-        
+
         /// <summary>
         /// LoginUser control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace rstemenu.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Login LoginUser;
-        
+
         /// <summary>
         /// RegisterHyperLink control.
         /// </summary>
@@ -47,5 +49,14 @@ namespace rstemenu.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
+
+        /// <summary>
+        /// promotionimage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage promotionimage;
     }
 }

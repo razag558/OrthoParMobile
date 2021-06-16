@@ -15,16 +15,13 @@
             <label>Doctor Name *  </label>
             <br />
             <asp:TextBox runat="server" ID="doctor_name" CssClass="form-control" />
-            <asp:RequiredFieldValidator runat="server" CssClass="text-danger" ControlToValidate="doctor_name" ErrorMessage="Please Fill Doctor Name" />
+            <asp:RequiredFieldValidator runat="server" CssClass="text-danger" ControlToValidate="doctor_name" ErrorMessage="Doctor Name is Required" />
         </div>
         <div class="col-md-12">
             <label>Patient id *  </label>
             <br />
             <asp:TextBox runat="server" ID="pat_id" CssClass="form-control" />
-            <asp:RequiredFieldValidator runat="server" CssClass="text-danger" ControlToValidate="pat_id" ErrorMessage="Please Fill Patient id" />
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2"
-                ControlToValidate="pat_id" ValidationExpression="\d+" Display="Static" EnableClientScript="true"
-                CssClass="text-danger" ErrorMessage="Please Enter numbers only" runat="server" />
+            <asp:RequiredFieldValidator runat="server" CssClass="text-danger" ControlToValidate="pat_id" ErrorMessage="Patient ID is required" />
         </div>
 
         <div class="col-md-12">

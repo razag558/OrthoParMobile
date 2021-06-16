@@ -33,8 +33,6 @@ namespace rstemenu
             Session["i_value"] = "0";
             Session["L_value"] = "0";
             Session["n_value"] = "0";
-
-
         }
 
         protected void new_treatment_Click(object sender, EventArgs e)
@@ -45,21 +43,23 @@ namespace rstemenu
         {
              Response.Redirect("~/all_patients_record.aspx");
         }
-
         protected void RegisteredDoctors_record_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/all_users.aspx");
         }
-
         protected void doc_muhammad_btn_Click(object sender, EventArgs e)
         {
             
                  Response.Redirect("~/Doctor_muhammad_bio.aspx");
         }
-
         protected void doc_haris_khan_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Doctor_Haris_bio.aspx");
+        }
+        protected void MoveToPromotion(object sender, EventArgs e)
+        {
+            Response.Redirect("~/PromoImages.aspx");
+
         }
     }
 }

@@ -98,18 +98,16 @@ namespace rstemenu
             }
         }
 
-      
-
         [Obsolete]
         protected void download_pdf_Click(object sender, EventArgs e)
         {
             try
             {
-                string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+                string filePath = "http://m.orthopar.org/canvasimages/" + SavingImage();
                 BindPatientVlaues();
                 StringBuilder columnbind = new StringBuilder();
                 columnbind.Append("<table Width='100%' border='0'><tr><td style='text-align:left'> <img width='50px' src =" + "'http://orthopar.org/images/parslogo.png'> </td>");
-                columnbind.Append("<td style='text-align:right'> https://orthopar.org </td></tr></table>");
+                columnbind.Append("<td style='text-align:right'> http://orthopar.org </td></tr></table>");
                 columnbind.Append("<br><h2> PAR COMPLETE RESULT </h2> ");
                 columnbind.Append("Patient ID: <t/> " + patient_id + "<br/> ");
                 columnbind.Append("Patient Name: <t/> " + pat_name + "<br/> ");
@@ -155,7 +153,7 @@ namespace rstemenu
                 columnbind.Append("1. Pretreatment Value of PAR (P1) : " + pre_value + "Points   <br/>");
                 columnbind.Append("2. Posttreatment Value of PAR (P2) : " + post_value + "Points   <br/>");
                 columnbind.Append("3. PAR Point-base treatment change (P1 - P2): " + result_value + "Points   <br/>");
-                columnbind.Append(point_result.Text + "  <br/>");
+                columnbind.Append(point_result.Text + "<br/>");
                 columnbind.Append("4. PAR Percentage-based Treatment Change{(P1-P2/P1) * 100} : " + percentage + "%   <br/>");
                 columnbind.Append(Label4.Text + "  <br/>");
                 columnbind.Append("</div>");
@@ -175,13 +173,11 @@ namespace rstemenu
                     bytes = memoryStream.ToArray();
                     memoryStream.Close();
                 }
-
-              
                 Response.Clear();
                 Response.Buffer = true;
-                Response.ContentType = "application/";
                 Response.AddHeader("content-disposition", "attachment;filename=PAR-" + patient_id + ".pdf");
                 Response.Charset = "";
+                Response.ContentType = "application/pdf";
                 Response.ContentEncoding = System.Text.Encoding.GetEncoding(1252);
                 Response.Buffer = true;
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -194,6 +190,7 @@ namespace rstemenu
                 Response.Write(ex);
             }
         }
+
         protected void download_csv_Click(object sender, EventArgs e)
         {
             patient_id = Convert.ToString(Session["patient_id"]);
@@ -255,15 +252,19 @@ namespace rstemenu
 
         protected void btn_send_email_Click(object sender, EventArgs e)
         {
+            //   string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+            string filePath = "http://m.orthopar.org/canvasimages/" + SavingImage();
 
 
-            string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+            BindPatientVlaues();
+
+
             string emailto = txb_email.Text;
             try
             {
                 BindPatientVlaues();
-                string Header = "<br><p><img src=" + "'https://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right'" + "><a href='" + "https://orthopar.org'" + " target='" + "_blank'" + ">https://orthopar.org</a><br><br>";
-                string chartdata = "<p> <img  width='400px' height='500px' src =" + "'" + filePath + "'" + "/> </p>";
+                string Header = "<br><p><img src=" + "'http://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right'" + "><a href='" + "http://orthopar.org'" + " target='" + "_blank'" + ">https://orthopar.org</a><br><br>";
+                string chartdata = "<p> <img src='" + filePath + "'/> </p>";
                 string PatientOtherDetail = "";
                 PatientOtherDetail = "<p>Doctor Name: " + doctor_name + "</p>";
                 PatientOtherDetail = PatientOtherDetail + "<p>Entry Date: " + entry_date + "</p>";
@@ -315,26 +316,27 @@ namespace rstemenu
                     st_percentage = " (PAR percentage result for this case is lesser than 30%   which indicates there is no improvement)";
                 else if (percentage > 70)
                     st_percentage = " (PAR percentage result for this case is greater than 70% which indicates Great improvement)";
-                string bodycontent = Header + "<h2>PAR COMPLETE RESULT</h2><br><b>Dear " + doctor_name + "</b> <br><br> Here your Assessment<br><p>Patient Name: " + pat_name + "</p><p>Patient ID: " + patient_id.ToString() + "</p>" + PatientOtherDetail + "<p> 1.Pretreatment Value of PAR (P1) : " + pre_value + "</p><p> 2.Posttreatment Value of PAR (P2): " + post_value + "</p><p>3. PAR Point-base treatment change (P1 - P2): " + result_value + " points </p><p>" + result + "</p><p>4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage + "% </p><br><br><p>" + st_percentage + "</p><br><br>" + chartdata + "<br><br><b>ORTHO PAR</b>";
+                string bodycontent = Header + "<h2>PAR COMPLETE RESULT</h2><br><b>Dear " + doctor_name + "</b> <br><br> Here your Assessment<br><p>Patient Name: " + pat_name + "</p><p>Patient ID: " + patient_id.ToString() + "</p>" + PatientOtherDetail + "<p> 1.Pretreatment Value of PAR (P1) : " + pre_value + "</p><p> 2.Posttreatment Value of PAR (P2): " + post_value + "</p><p>3. PAR Point-base treatment change (P1 - P2): " + result_value + " points </p><p>" + result + "</p><p>4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage + "% </p><br><br><p>" + st_percentage + "</p><br><br>" + chartdata + "<br> <br><b>ORTHO PAR</b>";
+
                 MailMessage message = new MailMessage();
                 message.To.Add(new MailAddress(emailto));
                 message.From = new MailAddress("info@orthopar.org");
                 message.Subject = "Par Result Report";
                 message.Body = bodycontent;
                 message.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtpout.asia.secureserver.net", 3535);
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.EnableSsl = false;
-                NetworkCredential nc = new NetworkCredential("info@orthopar.org", "Ayesha-22");
-                smtp.Credentials = nc;
-                smtp.Send(message);
+
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential("info@orthopar.org", "Ayesha-22");
+                client.Host = "relay-hosting.secureserver.net";
+                client.Send(message);
                 message.To.Clear();
-                email_response_show.Text = "Email Send";
+
+                email_response_show.Text = "Email Send.";
             }
             catch (Exception ex)
             {
                 if (ex != null)
-                    email_response_show.Text = ex.ToString();
+                    email_response_show.Text = "Error occurred while sending mail";
             }
         }
         public string SavingImage()

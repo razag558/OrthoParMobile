@@ -1886,6 +1886,7 @@
     <Content Include="Patient_info.aspx" />
     <Content Include="Patient_Pars_Values.aspx" />
     <Content Include="Positive_overbite.aspx" />
+    <Content Include="PromoImages.aspx" />
     <Content Include="Result_show.aspx" />
     <Content Include="Scripts\Ajax.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -2494,6 +2495,13 @@
     </Compile>
     <Compile Include="Positive_overbite.aspx.designer.cs">
       <DependentUpon>Positive_overbite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PromoImages.aspx.cs">
+      <DependentUpon>PromoImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PromoImages.aspx.designer.cs">
+      <DependentUpon>PromoImages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Result_show.aspx.cs">
       <DependentUpon>Result_show.aspx</DependentUpon>

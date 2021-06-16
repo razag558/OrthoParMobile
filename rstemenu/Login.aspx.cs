@@ -19,14 +19,17 @@ namespace rstemenu.Account
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            SetingPromotionImage();
             UserAuthentication();
-           if( Request.QueryString["forget"] !=null )
-            {
-                Response.Write("<script>alert('We have sent your password on your email')</script>");
-            }
-           //nn RegisterHyperLink.NavigateUrl = "Register.aspx?ReturnUrl=" + HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+
         }
 
+        private void SetingPromotionImage()
+        {
+            DataTable dt = obj.FetchingPromotionImage();
+            if (dt.Rows.Count > 0)
+                promotionimage.Src = "http://orthopar.org/images/" + dt.Rows[0]["ImageName"].ToString();
+        }
 
 
         public string UserAuthentication()

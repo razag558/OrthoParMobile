@@ -89,29 +89,16 @@ namespace rstemenu
 
             }
 
-
-
-
         }
 
         public  void send_email_Click(string emailto,string first,string last,string username,string password)
         {
-            
-        
             try
             {
                 string Header = "<br><p><img src=" + "'http://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right'" + "><a href='" + "http://orthopar.org'" + " target='" + "_blank'" + ">http://orthopar.org</a><br><br>";
-                
-
                 string PatientOtherDetail = "";
                 PatientOtherDetail = "<p> Your have Registerd to the Orthopar <br/> Now you can Use THe services of the This application    </p>";
 
-
-
-                //patient_id = Convert.ToString(Session["patient_id"]);
-                // pat_name = Convert.ToString(Session["patient_name"]);
-
-                //string bodycontent = "<h2>PAR COMPLETE RESULT</h2><br><b>Dear PatientName" + pat_name + "</b> <br><br> Here your Accessment<br><p>Patient Name: PatientName" + pat_name+"</p><p>Patient ID: 54689"+ patient_id + "</p><p> 1.Pretreatment Value of PAR (P1) : " + pre_value + "</p><p> 2.Posttreatment Value of PAR (P2): " + post_value + "</p><p>3. PAR Point-base treatment change (P1 - P2): " + result_value + " points </p><p>( Point based treatment changes: P1-P2. Change is less than 22 point indicates no improvement)</p><p>4. PAR Percentage-based Treatment Change {(P2-P1/P1) * 100} : " + percentage;
                 string bodycontent = Header + "<h2>PAR Registeration</h2><br><b>Dear " + first + "" + last + "<br>" + PatientOtherDetail + "<br>" + "Your User name is '"+ username + "'<br> and Your password is '"+password+"'";
 
                 MailMessage message = new MailMessage();

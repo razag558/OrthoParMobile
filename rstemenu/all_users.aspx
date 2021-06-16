@@ -15,7 +15,7 @@
                     OnRowCommand="datatable_RowCommand"
                     OnRowDataBound="datatable_RowDataBound"
                     OnPreRender="datatable_PreRender" 
-                    allowpaging="true" 
+                   
                     CssClass="table table-striped jambo_table table-bordered grid-table sorted_table department-grid FixedHeader"
                     runat="server" AutoGenerateColumns="False" ClientIDMode="Static" CellPadding="4" ForeColor="#333333"
                     GridLines="None">

@@ -131,18 +131,27 @@ namespace rstemenu
         [Obsolete]
         protected void download_pdf_Click(object sender, EventArgs e)
         {
- 
             BindPatientVlaues(Int32.Parse(Request.QueryString["id"].ToString()));
 
-            string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+            DataTable dt = obj.fetching_Pars_values_by_id(Int32.Parse(Request.QueryString["id"].ToString()));
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    pre_value = row["pretreatment_value"].ToString();
+                    post_value = row["posttreatment_value"].ToString();
+                    st_point_value = row["point_value"].ToString();
+                    percentage_value = Convert.ToDouble(row["percentage_value"].ToString());
+                }
+            }
+
+
+            string filePath = "http://m.orthopar.org/canvasimages/" + SavingImage();
             StringBuilder columnbind = new StringBuilder();
 
             columnbind.Append("<table Width='100%' border='0'><tr><td style='text-align:left'><img width='50px' src =" + "'http://orthopar.org/images/parslogo.png'></td>");
             columnbind.Append("<td style='text-align:right'>http://orthopar.org</td></tr></table>");
-
-
             columnbind.Append("<br><h2>PAR COMPLETE RESULT </h2> ");
-
             columnbind.Append("Patient ID: <t/> " + patient_id + "<br/> ");
             columnbind.Append("Patient Name: <t/> " + pat_name + "<br/> ");
             columnbind.Append("Doctor Name: <t/> " + doctor_name + "<br/> ");
@@ -191,7 +200,6 @@ namespace rstemenu
             columnbind.Append(point_result.Text + "  <br/>");
             columnbind.Append("4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage_value + "%   <br/>");
             columnbind.Append(Label4.Text + "  <br/>");
-            //columnbind.Append("5.PAR nomogram: Please visually plot P1 score on the X axis and P2 score on the Y axis of the PAR nomograph below to identify the treatment outcome based on the intersection of the visualised x and y point.  <br/> ");
             columnbind.Append("</div>");
 
             columnbind.Append("<p>");
@@ -214,9 +222,9 @@ namespace rstemenu
             }
             Response.Clear();
             Response.Buffer = true;
+            Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=P" + patient_id + ".pdf");
-            Response.Charset = "";
-            Response.ContentType = "application/text";
+            Response.Charset = "";   
             Response.ContentEncoding = System.Text.Encoding.GetEncoding(1252);
             Response.Buffer = true;
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -280,15 +288,30 @@ namespace rstemenu
             Response.Flush();
             Response.End();
         }
-        
+
         protected void btn_send_email_Click(object sender, EventArgs e)
         {
-            string filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+
+            BindPatientVlaues(Int32.Parse(Request.QueryString["id"].ToString()));
+
+            DataTable dt = obj.fetching_Pars_values_by_id(Int32.Parse(Request.QueryString["id"].ToString()));
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    pre_value = row["pretreatment_value"].ToString();
+                    post_value = row["posttreatment_value"].ToString();
+                    st_point_value = row["point_value"].ToString();
+                    percentage_value = Convert.ToDouble(row["percentage_value"].ToString());
+                }
+            }
+
+            string filePath = "http://m.orthopar.org/canvasimages/" + SavingImage();
             string emailto = txb_email.Text;
             try
             {
-                string Header = "<br><p><img src=" + "'https://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right;'" + ">http://orthopar.org<br><br>";
-                string chartdata = "<p> <img src =" + "'" + filePath + "'" + "/> </p>";
+                string Header = "<br><p><img src=" + "'http://orthopar.org/images/parslogo.png'/>" + "</p><p><hr></p><p style=" + "'text-align:right;'" + ">http://orthopar.org<br><br>";
+                string chartdata = "<p> <img src='" + filePath + "'/> </p>";
                 string PatientOtherDetail = "";
                 PatientOtherDetail = "<p>Doctor Name: " + doctor_name + "</p>";
                 PatientOtherDetail = PatientOtherDetail + "<p>Entry Date: " + entry_date + "</p>";
@@ -298,11 +321,12 @@ namespace rstemenu
                 PatientOtherDetail = PatientOtherDetail + "<p>Any teeth extracted?? " + extracted_teeth.Trim() + "</p>";
                 PatientOtherDetail = PatientOtherDetail + "<p>Prosthetic replacement for any of the spaces? " + replacement_teeth.Trim() + "</p>";
                 PatientOtherDetail = PatientOtherDetail + "<p>Any restorative treatment affecting the malocclusion? " + restorative.Trim() + "</p>";
- 
+
                 string result = "";
-                if (Convert.ToInt32(st_point_value) > 22)
+                int Points = st_point_value.Length == 0 ? 0 : Convert.ToInt32(st_point_value);
+                if (Points > 22)
                     result = "(Point-based treatment changes (P1-P2): As the change is more than 22 points, this indicates a great improvement secondary to the treatment)";
-                if (Convert.ToInt32(st_point_value) < 22)
+                if (Points < 22)
                     result = "(Point-based treatment changes (P1-P2): As the change is more than 22 points, this indicates no improvement secondary to the treatment)";
                 string st_percentage = "";
                 if (percentage_value > 30 && percentage_value < 70)
@@ -311,33 +335,29 @@ namespace rstemenu
                     st_percentage = " (PAR percentage result is lesser than 30%   which indicates there is no improvement)";
                 else if (percentage_value > 70)
                     st_percentage = " (PAR percentage result is greater than 70% which indicates Great improvement)";
-                string bodycontent = Header + "<h2>PAR COMPLETE RESULT</h2><br><b>Dear " + doctor_name + "</b> <br><br> Here your Assessment<br><p>Patient Name: " + pat_name + "</p><p>Patient ID: " + patient_id.ToString() + "</p>" + PatientOtherDetail + "<p> 1.Pretreatment Value of PAR (P1) : " + pre_value + "</p><p> 2.Posttreatment Value of PAR (P2): " + post_value + "</p><p>3. PAR Point-base treatment change (P1 - P2): " + st_point_value + " points </p><p> " + result + "</p><p>4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage_value + "%<br><br>" + st_percentage + "<br><br>" + chartdata + "<br><br><b>ORTHO PAR</b>";
+                string bodycontent = Header + "<h2> PAR COMPLETE RESULT </h2><br><b>Dear " + doctor_name + "</b> <br><br> Here your Assessment<br><p>Patient Name: " + pat_name + "</p><p>Patient ID: " + patient_id.ToString() + "</p>" + PatientOtherDetail + "<p> 1.Pretreatment Value of PAR (P1) : " + pre_value + "</p><p> 2.Posttreatment Value of PAR (P2): " + post_value + "</p><p>3. PAR Point-base treatment change (P1 - P2): " + st_point_value + " points </p><p> " + result + "</p><p>4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage_value + "%<br><br>" + st_percentage + "<br><br>" + chartdata + "<br><br><b>ORTHO PAR</b>";
 
-                MailMessage message = new MailMessage(  );
+                MailMessage message = new MailMessage();
                 message.To.Add(new MailAddress(emailto));
                 message.From = new MailAddress("info@orthopar.org");
                 message.Subject = "Par Result Report";
                 message.Body = bodycontent;
                 message.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtpout.asia.secureserver.net", 3535);
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.EnableSsl = false;
-                smtp.UseDefaultCredentials = false;
-                NetworkCredential nc = new NetworkCredential("info@orthopar.org", "Ayesha-22");
-                smtp.Credentials = nc;
-                smtp.Send(message);
+
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential("info@orthopar.org", "Ayesha-22");
+                client.Host = "relay-hosting.secureserver.net";
+                client.Send(message);
                 message.To.Clear();
-                email_response_show.Text = "Email Send";
+                email_response_show.Text = "Email Send.";
             }
             catch (Exception ex)
             {
                 if (ex != null)
-                    email_response_show.Text = ex.ToString();
+                    email_response_show.Text = "Error occurred while sending mail";
             }
-            finally
-            {
-                email_response_show.Text = "Email Send";
-            }
+
+
         }
         public string SavingImage()
         {
@@ -357,5 +377,137 @@ namespace rstemenu
             }
         }
 
+        //public void GeneratePdf()
+        //{
+        //    Document document = new Document(PageSize.A4, 88f, 88f, 10f, 10f);
+        //    iTextSharp.text.Font NormalFont = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL);
+        //    using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
+        //    {
+        //        PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+        //        Phrase phrase = null;
+        //        PdfPCell cell = null;
+        //        PdfPTable table = null;
+
+
+        //        document.Open();
+
+        //        //Header Table
+        //        table = new PdfPTable(2);
+        //        table.TotalWidth = 500f;
+        //        table.LockedWidth = true;
+        //        table.SetWidths(new float[] { 0.3f, 0.7f });
+
+        //        //Company Logo
+        //        cell = ImageCell("~/images/northwindlogo.gif", 30f, PdfPCell.ALIGN_CENTER);
+        //        table.AddCell(cell);
+
+        //        //Company Name and Address
+        //        phrase = new Phrase();
+        //        phrase.Add(new Chunk("Microsoft Northwind Traders Company\n\n", FontFactory.GetFont("Arial", 16, Font.BOLD, Color.RED)));
+        //        phrase.Add(new Chunk("107, Park site,\n", FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)));
+        //        phrase.Add(new Chunk("Salt Lake Road,\n", FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)));
+        //        phrase.Add(new Chunk("Seattle, USA", FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)));
+        //        cell = PhraseCell(phrase, PdfPCell.ALIGN_LEFT);
+        //        cell.VerticalAlignment = PdfCell.ALIGN_TOP;
+        //        table.AddCell(cell);
+
+        //        //Separater Line
+        //     Color   color = new Color(System.Drawing.ColorTranslator.FromHtml("#A9A9A9"));
+        //        DrawLine(writer, 25f, document.Top - 79f, document.PageSize.Width - 25f, document.Top - 79f, color);
+        //        DrawLine(writer, 25f, document.Top - 80f, document.PageSize.Width - 25f, document.Top - 80f, color);
+        //        document.Add(table);
+
+        //        table = new PdfPTable(2);
+        //        table.HorizontalAlignment = Element.ALIGN_LEFT;
+        //        table.SetWidths(new float[] { 0.3f, 1f });
+        //        table.SpacingBefore = 20f;
+
+        //        //Employee Details
+        //        cell = PhraseCell(new Phrase("Employee Record", FontFactory.GetFont("Arial", 12, Font.UNDERLINE, Color.BLACK)), PdfPCell.ALIGN_CENTER);
+        //        cell.Colspan = 2;
+        //        table.AddCell(cell);
+        //        cell = PhraseCell(new Phrase(), PdfPCell.ALIGN_CENTER);
+        //        cell.Colspan = 2;
+        //        cell.PaddingBottom = 30f;
+        //        table.AddCell(cell);
+
+        //        //Photo
+        //        cell = ImageCell(string.Format("~/photos/{0}.jpg", dr["EmployeeId"]), 25f, PdfPCell.ALIGN_CENTER);
+        //        table.AddCell(cell);
+
+        //        //Name
+        //        phrase = new Phrase();
+        //        phrase.Add(new Chunk(dr["TitleOfCourtesy"] + " " + dr["FirstName"] + " " + dr["LastName"] + "\n", FontFactory.GetFont("Arial", 10, Font.BOLD, Color.BLACK)));
+        //        phrase.Add(new Chunk("(" + dr["Title"].ToString() + ")", FontFactory.GetFont("Arial", 8, Font.BOLD, Color.BLACK)));
+        //        cell = PhraseCell(phrase, PdfPCell.ALIGN_LEFT);
+        //        cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+        //        table.AddCell(cell);
+        //        document.Add(table);
+
+        //        DrawLine(writer, 160f, 80f, 160f, 690f, Color.BLACK);
+        //        DrawLine(writer, 115f, document.Top - 200f, document.PageSize.Width - 100f, document.Top - 200f, Color.BLACK);
+
+        //        table = new PdfPTable(2);
+        //        table.SetWidths(new float[] { 0.5f, 2f });
+        //        table.TotalWidth = 340f;
+        //        table.LockedWidth = true;
+        //        table.SpacingBefore = 20f;
+        //        table.HorizontalAlignment = Element.ALIGN_RIGHT;
+
+        //        //Employee Id
+        //        table.AddCell(PhraseCell(new Phrase("Employee code:", FontFactory.GetFont("Arial", 8, Font.BOLD, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        table.AddCell(PhraseCell(new Phrase("000" + dr["EmployeeId"], FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        cell = PhraseCell(new Phrase(), PdfPCell.ALIGN_CENTER);
+        //        cell.Colspan = 2;
+        //        cell.PaddingBottom = 10f;
+        //        table.AddCell(cell);
+
+
+        //        //Address
+        //        table.AddCell(PhraseCell(new Phrase("Address:", FontFactory.GetFont("Arial", 8, Font.BOLD, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        phrase = new Phrase(new Chunk(dr["Address"] + "\n", FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)));
+        //        phrase.Add(new Chunk(dr["City"] + "\n", FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)));
+        //        phrase.Add(new Chunk(dr["Region"] + " " + dr["Country"] + " " + dr["PostalCode"], FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)));
+        //        table.AddCell(PhraseCell(phrase, PdfPCell.ALIGN_LEFT));
+        //        cell = PhraseCell(new Phrase(), PdfPCell.ALIGN_CENTER);
+        //        cell.Colspan = 2;
+        //        cell.PaddingBottom = 10f;
+        //        table.AddCell(cell);
+
+        //        //Date of Birth
+        //        table.AddCell(PhraseCell(new Phrase("Date of Birth:", FontFactory.GetFont("Arial", 8, Font.BOLD, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        table.AddCell(PhraseCell(new Phrase(Convert.ToDateTime(dr["BirthDate"]).ToString("dd MMMM, yyyy"), FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        cell = PhraseCell(new Phrase(), PdfPCell.ALIGN_CENTER);
+        //        cell.Colspan = 2;
+        //        cell.PaddingBottom = 10f;
+        //        table.AddCell(cell);
+
+        //        //Phone
+        //        table.AddCell(PhraseCell(new Phrase("Phone Number:", FontFactory.GetFont("Arial", 8, Font.BOLD, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        table.AddCell(PhraseCell(new Phrase(dr["HomePhone"] + " Ext: " + dr["Extension"], FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        cell = PhraseCell(new Phrase(), PdfPCell.ALIGN_CENTER);
+        //        cell.Colspan = 2;
+        //        cell.PaddingBottom = 10f;
+        //        table.AddCell(cell);
+
+        //        //Addtional Information
+        //        table.AddCell(PhraseCell(new Phrase("Addtional Information:", FontFactory.GetFont("Arial", 8, Font.BOLD, Color.BLACK)), PdfPCell.ALIGN_LEFT));
+        //        table.AddCell(PhraseCell(new Phrase(dr["Notes"].ToString(), FontFactory.GetFont("Arial", 8, Font.NORMAL, Color.BLACK)), PdfPCell.ALIGN_JUSTIFIED));
+        //        document.Add(table);
+        //        document.Close();
+        //        byte[] bytes = memoryStream.ToArray();
+        //        memoryStream.Close();
+        //        Response.Clear();
+        //        Response.ContentType = "application/pdf";
+        //        Response.AddHeader("Content-Disposition", "attachment; filename=Employee.pdf");
+        //        Response.ContentType = "application/pdf";
+        //        Response.Buffer = true;
+        //        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //        Response.BinaryWrite(bytes);
+        //        Response.End();
+        //        Response.Close();
+        //    }
+
+        //}
     }
 }

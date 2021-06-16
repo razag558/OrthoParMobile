@@ -58,6 +58,147 @@ namespace rstemenu
             return connStr.ToString();
         }
 
+        public DataTable FetchingPromotionImage()
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_FetchPromotionImage", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+            return dt;
+        }
+
+
+        public DataTable GetPromotionImages()
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_GetPromotionImages", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+            return dt;
+        }
+
+
+        public void DeletePhotoRecord(string ID)
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_DeletePromotion", con);
+                cmd.Parameters.Add(new SqlParameter("@ID", ID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+        }
+
+        public void UPdatePhotoImage(int PateintID)
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_UpdatePromotion", con);
+                cmd.Parameters.Add(new SqlParameter("@ID", PateintID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+        }
+
+        public void SaveImageInformation(string filename, string imgtype, string name)
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_SubmitPictureInformation", con);
+                cmd.Parameters.Add(new SqlParameter("@filename", filename));
+                cmd.Parameters.Add(new SqlParameter("@imgtype", imgtype));
+                cmd.Parameters.Add(new SqlParameter("@username", name));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+
+        }
 
 
         public void Registeruser(string first, string last, string country_name, string user_name, string city, string email, string password, string phone)

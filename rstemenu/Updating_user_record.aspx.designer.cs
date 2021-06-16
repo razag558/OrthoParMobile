@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rstemenu {
-    
-    
-    public partial class Updating_user_record {
-        
+namespace rstemenu
+{
+
+
+    public partial class Updating_user_record
+    {
+
         /// <summary>
         /// ErrorMessage control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
-        
+
         /// <summary>
         /// user_id control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox user_id;
-        
+
         /// <summary>
         /// user_First_name control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox user_First_name;
-        
+
         /// <summary>
         /// user_Last_name control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox user_Last_name;
-        
+
         /// <summary>
         /// username control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox username;
-        
+
         /// <summary>
         /// user_country control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox user_country;
-        
+
         /// <summary>
         /// user_City control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox user_City;
-        
+
         /// <summary>
         /// user_Email control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox user_Email;
-        
+
         /// <summary>
         /// contact_no control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox contact_no;
-        
+
         /// <summary>
         /// user_Password control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox user_Password;
-        
+
         /// <summary>
         /// ch_activating_user control.
         /// </summary>
@@ -110,7 +112,25 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox ch_activating_user;
-        
+
+        /// <summary>
+        /// chk_MakeAdmin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_MakeAdmin;
+
+        /// <summary>
+        /// chk_premium control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_premium;
+
         /// <summary>
         /// update_record control.
         /// </summary>
@@ -119,7 +139,7 @@ namespace rstemenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button update_record;
-        
+
         /// <summary>
         /// LabelUserError control.
         /// </summary>

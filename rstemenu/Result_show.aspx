@@ -1,8 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sadmin.Master" AutoEventWireup="true" CodeBehind="Result_show.aspx.cs" Inherits="rstemenu.Result_show" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
     <script src="Scripts/html2canvas.min.js"></script>
+
     <link href="CSS/GraphDesign.css" rel="stylesheet" />
+
     <script type="text/javascript">
         $('#load2').on('click', function () {
             var $this = $(this);
@@ -25,12 +28,12 @@
         function showingpanel() {
             if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "block") {
                 document.getElementById('<%= collapseExample.ClientID%>').style.display = "none";
-               
-                }
-                else if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "none") {
-                    document.getElementById('<%= collapseExample.ClientID%>').style.display = "block"
+
             }
-          
+            else if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "none") {
+                document.getElementById('<%= collapseExample.ClientID%>').style.display = "block"
+            }
+
         }
 
     </script>
@@ -40,8 +43,8 @@
         <div class="col-xm-4" style="text-align: center;">
             <h1 style="color: #6f7a83; text-align: center; font-family: Georgia,'Times New Roman', Times, serif;">Complete Result 
                   <a href="helppage.aspx?id=hp1new&heading=newhelp">
-                     <label>(help) </label>
-                 </a>
+                      <label>(help) </label>
+                  </a>
             </h1>
         </div>
         <div class="row text-center">
@@ -49,12 +52,17 @@
         </div>
         <div style="float: right; margin-right: 10%;">
             <div class="btn-group">
+                <% if (User.IsInRole("Premium"))
+                    {%>
                 <a>
                     <label onclick="showingpanel();" style="margin-right: 5px;" class="btn btn-default btn-lg">Email </label>
                 </a>
-                <asp:Button runat="server" ID="Button2" CssClass="btn btn-default btn-lg" Text="PDF" Style="margin-right: 5px;" UseSubmitBehavior="false" OnClick="download_pdf_Click" OnClientClick="return ConvertToImage(this)" />
+                <asp:Button runat="server" ID="Button2" CssClass="btn btn-default btn-lg" Text="Download PDF" Style="margin-right: 5px;" UseSubmitBehavior="false" OnClick="download_pdf_Click" OnClientClick="return ConvertToImage(this)" />
+                <%} %>
                 <a href="all_patients_record.aspx">
-                    <label class="btn btn-default btn-lg">Patients</label></a>
+                    <label class="btn btn-default btn-lg">Patients </label>
+                </a>
+               
             </div>
         </div>
     </div>
@@ -82,7 +90,9 @@
         <asp:Label runat="server" Text="" Font-Size="16px" ForeColor="Red" ID="point_result"></asp:Label>
         <br />
         <asp:Label runat="server" Text="" Font-Size="18px" ID="Label3"></asp:Label>
-        <a href="helppage.aspx?id=54&heading=percentage" > <label> (help)</label> </a>
+        <a href="helppage.aspx?id=54&heading=percentage">
+            <label>(help)</label>
+        </a>
         <br />
         <asp:Label runat="server" Text="" ForeColor="Red" Font-Size="16px" ID="Label4"></asp:Label>
         <br />
@@ -90,7 +100,7 @@
         </asp:Label>
         <asp:Label runat="server" ID="posttreatment" Style="color: white;" />
         <div id="contentcontrol" runat="server" style="width: 100%; height: 600px; margin-top: 50px; padding: 4%;">
-          <%--  <div class="col-md-2" runat="server" visible="false">
+            <%--  <div class="col-md-2" runat="server" visible="false">
                 <svg width="70" height="350" viewBox="0 0 200 150">
                     <path d="m 100,0 0,150" />
                     <text x="100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100" y="50 80 110 140 170 200 230 260 290 320 350 380 410 440 470 500"
