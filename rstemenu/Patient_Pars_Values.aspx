@@ -22,7 +22,6 @@
             else if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "none") {
                 document.getElementById('<%= collapseExample.ClientID%>').style.display = "block"
             }
-
         }
     </script>
 

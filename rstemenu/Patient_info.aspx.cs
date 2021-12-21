@@ -63,14 +63,17 @@ namespace rstemenu
 
             string selecteddatetime = patientcheckdate.Value;
             String username = User.Identity.Name;
+
             if (selecteddatetime.ToString().Length > 0)
             {
-                data = obj.submittion_of_Patient_info(doctor_name.Text, pat_id.Text, pat_name.Text, gender, impact_teeth, missing_teeth, extracted, replacement, restorative, Convert.ToDateTime(selecteddatetime), username);
+                DateTime date2 = Convert.ToDateTime(selecteddatetime, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
+
+                data = obj.submittion_of_Patient_info(doctor_name.Text, pat_id.Text, pat_name.Text, gender, impact_teeth, missing_teeth, extracted, replacement, restorative, date2, username);
                 Response.Redirect("~/Treatment_type.aspx?pat_id=" + data + "&pat_name=" + pat_name.Text);
             }
             else
                 Response.Write("<script> alert('Please Choose Date First');</script>");
-            
+
         }
 
         public void ReSetting_Session_values()

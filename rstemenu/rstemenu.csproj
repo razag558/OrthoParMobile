@@ -1866,6 +1866,7 @@
     <Content Include="images\icons\close-button.png" />
     <Content Include="images\icons\close-buttons.png" />
     <Content Include="images\icons\msgicon.png" />
+    <Content Include="images\logo.jpg" />
     <Content Include="images\MOHAMMEDALMUZIAN.jpg" />
     <Content Include="images\momogram.png" />
     <Content Include="images\orthoparnewimage.jpg" />

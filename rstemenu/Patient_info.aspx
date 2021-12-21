@@ -37,6 +37,7 @@
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
             </div>
             <input type="hidden" id="dtp_input1"  value="" /><br />
+             <asp:RequiredFieldValidator runat="server" CssClass="text-danger" ControlToValidate="patientcheckdate" ErrorMessage="Date and Time is required" />
         </div>
         <br />
         <br />

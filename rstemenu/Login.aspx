@@ -155,7 +155,7 @@
                 <asp:Login ID="LoginUser" runat="server" EnableViewState="false" RenderOuterTable="false" FailureText="Invalid Username or Password.">
                     <LayoutTemplate>
                         <div class="login-container" style="border: 0px solid;">
-                            <img src="images/parslogo.png">
+                            <img src="images/logo.jpg">
                             <h1>Login </h2>
               <div class="user_input_field">
                   <asp:TextBox ID="username" runat="server" CssClass="textEntry" required="required" placeholder="Email address" title="Doctor Username"></asp:TextBox>
